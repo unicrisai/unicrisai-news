@@ -1,0 +1,36 @@
+name: Update News
+on:
+  schedule:
+    # This runs at 01:00 UTC (which is 8:00 AM in Bangkok)
+    - cron: '0 1 * * *'
+  workflow_dispatch: # This adds a "Run now" button so we can test it!
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # This gives the action permission to update your site
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install feedparser google-generativeai
+
+      - name: Run News Script
+        run: python main.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Commit and Push index.html
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add index.html
+          git commit -m "Update news for $(date)" || echo "No changes to commit"
+          git push
