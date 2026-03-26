@@ -2,104 +2,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UnicrisAI News</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: white; color: black; }
-        img { filter: grayscale(100%); }
-        .news-card { border-bottom: 1px solid #f3f4f6; padding: 2rem 0; }
+        body { background: white; color: black; }
+        .banner-img { filter: grayscale(100%); height: 120px; width: 100%; object-fit: cover; border-radius: 2px; }
+        .news-card { border-bottom: 1px solid #f3f4f6; padding: 2.5rem 0; }
+        input:focus { outline: none; border-bottom: 2px solid black; }
     </style>
 </head>
 <body class="font-sans antialiased">
-    <header class="max-w-4xl mx-auto pt-12 px-6 flex justify-between items-baseline border-b border-gray-100 pb-6">
-        <div>
-            <h1 class="text-3xl font-black tracking-tighter uppercase">UnicrisAI</h1>
-            <p class="text-xs tracking-[0.2em] text-gray-400 mt-1">DEEP TECH • AI • SEA</p>
+    <header class="max-w-2xl mx-auto pt-16 px-6">
+        <h1 class="text-4xl font-black tracking-tighter uppercase">UnicrisAI</h1>
+        <div class="flex justify-between items-center mt-4 text-[10px] tracking-[0.3em] text-gray-400 uppercase">
+            <div>DEEP TECH • AI • SEA</div>
+            <div>2026-03-26</div>
         </div>
-        <div class="text-right">
-            <p class="text-xs font-mono text-gray-400">2026-03-26</p>
+        <div class="mt-12 border-b border-gray-100 pb-2">
+            <input type="text" id="searchInput" placeholder="SEARCH ARCHIVE..." class="w-full text-xs tracking-widest uppercase bg-transparent">
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-6 py-12">
-<h2 class='text-sm font-bold uppercase tracking-widest text-gray-400 mt-12 mb-6 border-l-4 border-black pl-3' id='AI'>AI</h2>
-        <div class="news-card">
-            <h3 class="text-xl font-medium leading-tight mb-3">
-                <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxNSjZQcEJxZ1NuZG9JSThnYWI3Mk4zbmNNQTUyZDF6QVlUbldKVVJpY041UDNiTEJLUUdpdGFGTTlaMFE5SkRQbzBmR1FIWFd3U0RPNjhZRXlfYTI3UVZ2NEgxTW1yMTJZMG5HWV9nZTZHZnItal9DQ25GWld1MEhNMUdraV9ZYjFYQ3dlSjVoWWFjcWdLZU9IaTBnZHY?oc=5" target="_blank" class="hover:text-gray-500 transition-colors">How artificial intelligence is useful to cattle producers - Farm Progress</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed text-sm mb-4">Summary currently unavailable.</p>
-            <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxNSjZQcEJxZ1NuZG9JSThnYWI3Mk4zbmNNQTUyZDF6QVlUbldKVVJpY041UDNiTEJLUUdpdGFGTTlaMFE5SkRQbzBmR1FIWFd3U0RPNjhZRXlfYTI3UVZ2NEgxTW1yMTJZMG5HWV9nZTZHZnItal9DQ25GWld1MEhNMUdraV9ZYjFYQ3dlSjVoWWFjcWdLZU9IaTBnZHY?oc=5" target="_blank" class="text-[10px] uppercase tracking-widest font-bold border-b border-black pb-1">Read Article →</a>
-        </div>
-        
-        <div class="news-card">
-            <h3 class="text-xl font-medium leading-tight mb-3">
-                <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxQREdNQzhtTVhVcklReDJfWDZZTXMzQXU3RWg3UmlwbkhuaW1pZl9yZWFhczA4bnFCemh4SzcyUXJDT2h3ckFZTjBGelhodk4tSGhHZnVtM0dNQXRGbjhhRFM2NmJpOHlsZ0ZqSXNvb1BFVHlYUXFaUkpnZkxyWEszVQ?oc=5" target="_blank" class="hover:text-gray-500 transition-colors">Can Artificial Intelligence Fix Social Science? - City Journal</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed text-sm mb-4">Summary currently unavailable.</p>
-            <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxQREdNQzhtTVhVcklReDJfWDZZTXMzQXU3RWg3UmlwbkhuaW1pZl9yZWFhczA4bnFCemh4SzcyUXJDT2h3ckFZTjBGelhodk4tSGhHZnVtM0dNQXRGbjhhRFM2NmJpOHlsZ0ZqSXNvb1BFVHlYUXFaUkpnZkxyWEszVQ?oc=5" target="_blank" class="text-[10px] uppercase tracking-widest font-bold border-b border-black pb-1">Read Article →</a>
-        </div>
-        
-        <div class="news-card">
-            <h3 class="text-xl font-medium leading-tight mb-3">
-                <a href="https://news.google.com/rss/articles/CBMi2wFBVV95cUxPXzlQMHRVRzdTSkI3WHRDa0lxdlZJaGw0WnpHd2VRX0NuRzJ4aXQ3WTA2cy03VUUyaFkteEJ3SGwwYXR6QVU3bWRmLUhEZFNMbm9UVzhCSmlBUTREQ3BPTTU5R2IxUncwbWp5WU16dXpYRUtDWVdWenZCRjBTbkVsUXlVOTl1RmtRZ2txNDROYTVvSUw5OUFnYjFiTGU5eHhEU1ktRmNEUW5aZWo3WE9sdVpHTkVMTkRSQmt0T1JFNW9uRGFGN256RS1KUUNUUFJHLU1CMjVlUEluaVE?oc=5" target="_blank" class="hover:text-gray-500 transition-colors">Clarivate Reveals the AI50 - the Organizations Leading Artificial Intelligence Invention - PR Newswire</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed text-sm mb-4">Summary currently unavailable.</p>
-            <a href="https://news.google.com/rss/articles/CBMi2wFBVV95cUxPXzlQMHRVRzdTSkI3WHRDa0lxdlZJaGw0WnpHd2VRX0NuRzJ4aXQ3WTA2cy03VUUyaFkteEJ3SGwwYXR6QVU3bWRmLUhEZFNMbm9UVzhCSmlBUTREQ3BPTTU5R2IxUncwbWp5WU16dXpYRUtDWVdWenZCRjBTbkVsUXlVOTl1RmtRZ2txNDROYTVvSUw5OUFnYjFiTGU5eHhEU1ktRmNEUW5aZWo3WE9sdVpHTkVMTkRSQmt0T1JFNW9uRGFGN256RS1KUUNUUFJHLU1CMjVlUEluaVE?oc=5" target="_blank" class="text-[10px] uppercase tracking-widest font-bold border-b border-black pb-1">Read Article →</a>
-        </div>
-        <h2 class='text-sm font-bold uppercase tracking-widest text-gray-400 mt-12 mb-6 border-l-4 border-black pl-3' id='Deep Tech'>Deep Tech</h2>
-        <div class="news-card">
-            <h3 class="text-xl font-medium leading-tight mb-3">
-                <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxPSWN6NWVza21XRUJFOV96UWZiWUJvZHRzdURfalc4dGgzQ1hTWlhROS01aXdvV2ktWUtFVlZMVUNTNnZyaFhBYUtnY1owMFJHTFV2d0JRVEtjZU1aUFVoaG4zeXlQalBNWm42bnF6OUlrWGQ4Q0FrejVrNmd2bVNCd1AtbHotUGlEU1JQX2U4bWhfS2NlaVpsQ1pnaWJ6TzRLekHSAaIBQVVfeXFMT0ljejVlc2ttV0VCRTlfelFmYllCb2R0c3VEX2pXOHRoM0NYU1pYUTktNWl3b1dpLVlLRVZWTFVDUzZ2cmhYQWFLZ2NaMDBSR0xVdndCUVRLY2VNWlBVaGhuM3l5UGpQTVpuNm5xejlJa1hkOENBa3o1azZndm1TQndQLWx6LVBpRFNSUF9lOG1oX0tjZWlabENaZ2liek80S3pB?oc=5" target="_blank" class="hover:text-gray-500 transition-colors">GQI’s Quantum Technology Framework for the Energy Value Chain - Quantum Computing Report</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed text-sm mb-4">Summary currently unavailable.</p>
-            <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxPSWN6NWVza21XRUJFOV96UWZiWUJvZHRzdURfalc4dGgzQ1hTWlhROS01aXdvV2ktWUtFVlZMVUNTNnZyaFhBYUtnY1owMFJHTFV2d0JRVEtjZU1aUFVoaG4zeXlQalBNWm42bnF6OUlrWGQ4Q0FrejVrNmd2bVNCd1AtbHotUGlEU1JQX2U4bWhfS2NlaVpsQ1pnaWJ6TzRLekHSAaIBQVVfeXFMT0ljejVlc2ttV0VCRTlfelFmYllCb2R0c3VEX2pXOHRoM0NYU1pYUTktNWl3b1dpLVlLRVZWTFVDUzZ2cmhYQWFLZ2NaMDBSR0xVdndCUVRLY2VNWlBVaGhuM3l5UGpQTVpuNm5xejlJa1hkOENBa3o1azZndm1TQndQLWx6LVBpRFNSUF9lOG1oX0tjZWlabENaZ2liek80S3pB?oc=5" target="_blank" class="text-[10px] uppercase tracking-widest font-bold border-b border-black pb-1">Read Article →</a>
-        </div>
-        
-        <div class="news-card">
-            <h3 class="text-xl font-medium leading-tight mb-3">
-                <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPTm9LbWRhN1ZJWEdraDQ0TFRmZXJtYnBhRms5T1JFdEFrR284dGJ4U3NZWVRHc19IdmhiVWxnb1ZKMXJTT3pHTnVraWdveHBMZVhidENGblVLeDZqZE0yOUplNlZ0X2FiRGZSMUpuRUdLaF8yOXpPTUIxMnlDSVI1WUtldGFrS3cwNHNhSHk1MEJlUnJtRDBiWENMYV8tNnJyUExYUDh4MmVNY3BNaHNFV21DSXFFZnlxekxVWXRRS1I3VVE?oc=5" target="_blank" class="hover:text-gray-500 transition-colors">OQD Launches Open-Source Collaboration with WD and QuScript to Advance Quantum Error Correction - The Quantum Insider</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed text-sm mb-4">Summary currently unavailable.</p>
-            <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPTm9LbWRhN1ZJWEdraDQ0TFRmZXJtYnBhRms5T1JFdEFrR284dGJ4U3NZWVRHc19IdmhiVWxnb1ZKMXJTT3pHTnVraWdveHBMZVhidENGblVLeDZqZE0yOUplNlZ0X2FiRGZSMUpuRUdLaF8yOXpPTUIxMnlDSVI1WUtldGFrS3cwNHNhSHk1MEJlUnJtRDBiWENMYV8tNnJyUExYUDh4MmVNY3BNaHNFV21DSXFFZnlxekxVWXRRS1I3VVE?oc=5" target="_blank" class="text-[10px] uppercase tracking-widest font-bold border-b border-black pb-1">Read Article →</a>
-        </div>
-        
-        <div class="news-card">
-            <h3 class="text-xl font-medium leading-tight mb-3">
-                <a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE9fSGNYVk5tZmYyaGVoY00wTUVXY2hkenRrcEw2VExHTGVZZ1lkNWx5cTJBdUdGTkVfNE5RbGp1QWhMeG9hRVlDc0lLY0U1QXZUVi1B?oc=5" target="_blank" class="hover:text-gray-500 transition-colors">Korean Quantum Computer's 'Sacredness'...The Door of Commercialization by Qunova - 매일경제</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed text-sm mb-4">Summary currently unavailable.</p>
-            <a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE9fSGNYVk5tZmYyaGVoY00wTUVXY2hkenRrcEw2VExHTGVZZ1lkNWx5cTJBdUdGTkVfNE5RbGp1QWhMeG9hRVlDc0lLY0U1QXZUVi1B?oc=5" target="_blank" class="text-[10px] uppercase tracking-widest font-bold border-b border-black pb-1">Read Article →</a>
-        </div>
-        <h2 class='text-sm font-bold uppercase tracking-widest text-gray-400 mt-12 mb-6 border-l-4 border-black pl-3' id='South East Asia'>South East Asia</h2>
-        <div class="news-card">
-            <h3 class="text-xl font-medium leading-tight mb-3">
-                <a href="https://news.google.com/rss/articles/CBMi7AFBVV95cUxQSnk2QnV0cHdGN1lxWmI1RUxiQnE1Vk83NVhPcVN4ZWNQYkN4aU1jc0ZzNFJRaG1xSnBVRW0tanZrWGRYeXNHdVJQVUF0MkRSQy1UR3I5UDlCMnhnVXdKdmdtZm16YTltb1BHUmt3WkxNcHJHUmVtME5CVklDOUxMb0VZd3p0NTExZFNqSHFXeGlnekN5YWYyQU1iMDNlczVMTTVocFNMREx2cmU0ZXBwR0RHbFA0QWFqMlJ6LTBoY0lfUGhFWkNTVzlCek1MYzJESXZaT0Rzd3lld2dTbjJPaGpsR3VoWGxsVXRYVw?oc=5" target="_blank" class="hover:text-gray-500 transition-colors">Dmitry Shubov Discusses the "Agentic Shift" in Southeast Asia’s 2026 Legal-Tech Market - GlobeNewswire</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed text-sm mb-4">Summary currently unavailable.</p>
-            <a href="https://news.google.com/rss/articles/CBMi7AFBVV95cUxQSnk2QnV0cHdGN1lxWmI1RUxiQnE1Vk83NVhPcVN4ZWNQYkN4aU1jc0ZzNFJRaG1xSnBVRW0tanZrWGRYeXNHdVJQVUF0MkRSQy1UR3I5UDlCMnhnVXdKdmdtZm16YTltb1BHUmt3WkxNcHJHUmVtME5CVklDOUxMb0VZd3p0NTExZFNqSHFXeGlnekN5YWYyQU1iMDNlczVMTTVocFNMREx2cmU0ZXBwR0RHbFA0QWFqMlJ6LTBoY0lfUGhFWkNTVzlCek1MYzJESXZaT0Rzd3lld2dTbjJPaGpsR3VoWGxsVXRYVw?oc=5" target="_blank" class="text-[10px] uppercase tracking-widest font-bold border-b border-black pb-1">Read Article →</a>
-        </div>
-        
-        <div class="news-card">
-            <h3 class="text-xl font-medium leading-tight mb-3">
-                <a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxQekRZcHlFMmxuN3I0a09sSDBWV21EbjdGTGJpZE4zZ0pIblFaMlVXdmtWaWprRWdfMktITkN0SVA4REVzU1hGTndUN3VPOFVUWS1xZEc0bW9lbG5TZG9OM0p0Mnk0eHViU2Z4QklMaUxJN1RXcUs3WWRDa2JGT3R3aGItQkM5Q2dNYkx6aTg5a05xNUg3a0hXa253TQ?oc=5" target="_blank" class="hover:text-gray-500 transition-colors">Asia Sales Mastery: A New Guide to Winning in Southeast Asia - openPR.com</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed text-sm mb-4">Summary currently unavailable.</p>
-            <a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxQekRZcHlFMmxuN3I0a09sSDBWV21EbjdGTGJpZE4zZ0pIblFaMlVXdmtWaWprRWdfMktITkN0SVA4REVzU1hGTndUN3VPOFVUWS1xZEc0bW9lbG5TZG9OM0p0Mnk0eHViU2Z4QklMaUxJN1RXcUs3WWRDa2JGT3R3aGItQkM5Q2dNYkx6aTg5a05xNUg3a0hXa253TQ?oc=5" target="_blank" class="text-[10px] uppercase tracking-widest font-bold border-b border-black pb-1">Read Article →</a>
-        </div>
-        
-        <div class="news-card">
-            <h3 class="text-xl font-medium leading-tight mb-3">
-                <a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxQel9FMGozNHd3V1VOc0dGajZyTVFjdXd3VVZuRkVQd2prbG45X0N3S2dlVkJ5WHgyUVRhUlg5bTZFZXZ3N1EzYjFmV3EwaW1SLVJMT3VwS203M0tvYzdJUEtzc2l3eUFydmt3ZXVuREtCakxUQjkzMEZVTVhxMGQ5RHVTbHdzTVQxdndXWlRXVHlzREQ1U1BNaDhJUUV3TzlPeXlQMi1icUZlVGV4Ql9kX1FqLTg4RXV0dXBVSVV1QQ?oc=5" target="_blank" class="hover:text-gray-500 transition-colors">Southeast Asia-focused SeaX Ventures invests $10M in RyboDyn's AI-driven cancer research - TNGlobal</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed text-sm mb-4">Summary currently unavailable.</p>
-            <a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxQel9FMGozNHd3V1VOc0dGajZyTVFjdXd3VVZuRkVQd2prbG45X0N3S2dlVkJ5WHgyUVRhUlg5bTZFZXZ3N1EzYjFmV3EwaW1SLVJMT3VwS203M0tvYzdJUEtzc2l3eUFydmt3ZXVuREtCakxUQjkzMEZVTVhxMGQ5RHVTbHdzTVQxdndXWlRXVHlzREQ1U1BNaDhJUUV3TzlPeXlQMi1icUZlVGV4Ql9kX1FqLTg4RXV0dXBVSVV1QQ?oc=5" target="_blank" class="text-[10px] uppercase tracking-widest font-bold border-b border-black pb-1">Read Article →</a>
-        </div>
-        
+    <main id="newsContainer" class="max-w-2xl mx-auto px-6 py-8">
+
+    <div class="news-card" data-title="southeast asia-focused seax ventures invests $10m in rybodyn's ai-driven cancer research - tnglobal">
+        <img src="https://images.unsplash.com/photo-1528154291023-a6525fabe5b4?w=800&q=80" class="banner-img mb-4">
+        <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">South East Asia</div>
+        <h3 class="text-xl font-bold leading-tight mb-3">
+            <a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxQel9FMGozNHd3V1VOc0dGajZyTVFjdXd3VVZuRkVQd2prbG45X0N3S2dlVkJ5WHgyUVRhUlg5bTZFZXZ3N1EzYjFmV3EwaW1SLVJMT3VwS203M0tvYzdJUEtzc2l3eUFydmt3ZXVuREtCakxUQjkzMEZVTVhxMGQ5RHVTbHdzTVQxdndXWlRXVHlzREQ1U1BNaDhJUUV3TzlPeXlQMi1icUZlVGV4Ql9kX1FqLTg4RXV0dXBVSVV1QQ?oc=5" target="_blank" class="hover:text-gray-400 transition-colors">Southeast Asia-focused SeaX Ventures invests $10M in RyboDyn's AI-driven cancer research - TNGlobal</a>
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Insightful summary coming shortly.</p>
+        <a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxQel9FMGozNHd3V1VOc0dGajZyTVFjdXd3VVZuRkVQd2prbG45X0N3S2dlVkJ5WHgyUVRhUlg5bTZFZXZ3N1EzYjFmV3EwaW1SLVJMT3VwS203M0tvYzdJUEtzc2l3eUFydmt3ZXVuREtCakxUQjkzMEZVTVhxMGQ5RHVTbHdzTVQxdndXWlRXVHlzREQ1U1BNaDhJUUV3TzlPeXlQMi1icUZlVGV4Ql9kX1FqLTg4RXV0dXBVSVV1QQ?oc=5" target="_blank" class="text-[9px] font-black border-b border-black pb-0.5 tracking-widest uppercase">Read More →</a>
+    </div>
+    
+    <div class="news-card" data-title="asia sales mastery: a new guide to winning in southeast asia - openpr.com">
+        <img src="https://images.unsplash.com/photo-1528154291023-a6525fabe5b4?w=800&q=80" class="banner-img mb-4">
+        <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">South East Asia</div>
+        <h3 class="text-xl font-bold leading-tight mb-3">
+            <a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxQekRZcHlFMmxuN3I0a09sSDBWV21EbjdGTGJpZE4zZ0pIblFaMlVXdmtWaWprRWdfMktITkN0SVA4REVzU1hGTndUN3VPOFVUWS1xZEc0bW9lbG5TZG9OM0p0Mnk0eHViU2Z4QklMaUxJN1RXcUs3WWRDa2JGT3R3aGItQkM5Q2dNYkx6aTg5a05xNUg3a0hXa253TQ?oc=5" target="_blank" class="hover:text-gray-400 transition-colors">Asia Sales Mastery: A New Guide to Winning in Southeast Asia - openPR.com</a>
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Insightful summary coming shortly.</p>
+        <a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxQekRZcHlFMmxuN3I0a09sSDBWV21EbjdGTGJpZE4zZ0pIblFaMlVXdmtWaWprRWdfMktITkN0SVA4REVzU1hGTndUN3VPOFVUWS1xZEc0bW9lbG5TZG9OM0p0Mnk0eHViU2Z4QklMaUxJN1RXcUs3WWRDa2JGT3R3aGItQkM5Q2dNYkx6aTg5a05xNUg3a0hXa253TQ?oc=5" target="_blank" class="text-[9px] font-black border-b border-black pb-0.5 tracking-widest uppercase">Read More →</a>
+    </div>
+    
+    <div class="news-card" data-title="dmitry shubov discusses the "agentic shift" in southeast asia’s 2026 legal-tech market - globenewswire">
+        <img src="https://images.unsplash.com/photo-1528154291023-a6525fabe5b4?w=800&q=80" class="banner-img mb-4">
+        <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">South East Asia</div>
+        <h3 class="text-xl font-bold leading-tight mb-3">
+            <a href="https://news.google.com/rss/articles/CBMi7AFBVV95cUxQSnk2QnV0cHdGN1lxWmI1RUxiQnE1Vk83NVhPcVN4ZWNQYkN4aU1jc0ZzNFJRaG1xSnBVRW0tanZrWGRYeXNHdVJQVUF0MkRSQy1UR3I5UDlCMnhnVXdKdmdtZm16YTltb1BHUmt3WkxNcHJHUmVtME5CVklDOUxMb0VZd3p0NTExZFNqSHFXeGlnekN5YWYyQU1iMDNlczVMTTVocFNMREx2cmU0ZXBwR0RHbFA0QWFqMlJ6LTBoY0lfUGhFWkNTVzlCek1MYzJESXZaT0Rzd3lld2dTbjJPaGpsR3VoWGxsVXRYVw?oc=5" target="_blank" class="hover:text-gray-400 transition-colors">Dmitry Shubov Discusses the "Agentic Shift" in Southeast Asia’s 2026 Legal-Tech Market - GlobeNewswire</a>
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Insightful summary coming shortly.</p>
+        <a href="https://news.google.com/rss/articles/CBMi7AFBVV95cUxQSnk2QnV0cHdGN1lxWmI1RUxiQnE1Vk83NVhPcVN4ZWNQYkN4aU1jc0ZzNFJRaG1xSnBVRW0tanZrWGRYeXNHdVJQVUF0MkRSQy1UR3I5UDlCMnhnVXdKdmdtZm16YTltb1BHUmt3WkxNcHJHUmVtME5CVklDOUxMb0VZd3p0NTExZFNqSHFXeGlnekN5YWYyQU1iMDNlczVMTTVocFNMREx2cmU0ZXBwR0RHbFA0QWFqMlJ6LTBoY0lfUGhFWkNTVzlCek1MYzJESXZaT0Rzd3lld2dTbjJPaGpsR3VoWGxsVXRYVw?oc=5" target="_blank" class="text-[9px] font-black border-b border-black pb-0.5 tracking-widest uppercase">Read More →</a>
+    </div>
+    
+    <div class="news-card" data-title="korean quantum computer's 'sacredness'...the door of commercialization by qunova - 매일경제">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80" class="banner-img mb-4">
+        <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">Deep Tech</div>
+        <h3 class="text-xl font-bold leading-tight mb-3">
+            <a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE9fSGNYVk5tZmYyaGVoY00wTUVXY2hkenRrcEw2VExHTGVZZ1lkNWx5cTJBdUdGTkVfNE5RbGp1QWhMeG9hRVlDc0lLY0U1QXZUVi1B?oc=5" target="_blank" class="hover:text-gray-400 transition-colors">Korean Quantum Computer's 'Sacredness'...The Door of Commercialization by Qunova - 매일경제</a>
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Insightful summary coming shortly.</p>
+        <a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE9fSGNYVk5tZmYyaGVoY00wTUVXY2hkenRrcEw2VExHTGVZZ1lkNWx5cTJBdUdGTkVfNE5RbGp1QWhMeG9hRVlDc0lLY0U1QXZUVi1B?oc=5" target="_blank" class="text-[9px] font-black border-b border-black pb-0.5 tracking-widest uppercase">Read More →</a>
+    </div>
+    
+    <div class="news-card" data-title="oqd launches open-source collaboration with wd and quscript to advance quantum error correction - the quantum insider">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80" class="banner-img mb-4">
+        <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">Deep Tech</div>
+        <h3 class="text-xl font-bold leading-tight mb-3">
+            <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPTm9LbWRhN1ZJWEdraDQ0TFRmZXJtYnBhRms5T1JFdEFrR284dGJ4U3NZWVRHc19IdmhiVWxnb1ZKMXJTT3pHTnVraWdveHBMZVhidENGblVLeDZqZE0yOUplNlZ0X2FiRGZSMUpuRUdLaF8yOXpPTUIxMnlDSVI1WUtldGFrS3cwNHNhSHk1MEJlUnJtRDBiWENMYV8tNnJyUExYUDh4MmVNY3BNaHNFV21DSXFFZnlxekxVWXRRS1I3VVE?oc=5" target="_blank" class="hover:text-gray-400 transition-colors">OQD Launches Open-Source Collaboration with WD and QuScript to Advance Quantum Error Correction - The Quantum Insider</a>
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Insightful summary coming shortly.</p>
+        <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPTm9LbWRhN1ZJWEdraDQ0TFRmZXJtYnBhRms5T1JFdEFrR284dGJ4U3NZWVRHc19IdmhiVWxnb1ZKMXJTT3pHTnVraWdveHBMZVhidENGblVLeDZqZE0yOUplNlZ0X2FiRGZSMUpuRUdLaF8yOXpPTUIxMnlDSVI1WUtldGFrS3cwNHNhSHk1MEJlUnJtRDBiWENMYV8tNnJyUExYUDh4MmVNY3BNaHNFV21DSXFFZnlxekxVWXRRS1I3VVE?oc=5" target="_blank" class="text-[9px] font-black border-b border-black pb-0.5 tracking-widest uppercase">Read More →</a>
+    </div>
+    
+    <div class="news-card" data-title="gqi’s quantum technology framework for the energy value chain - quantum computing report">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80" class="banner-img mb-4">
+        <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">Deep Tech</div>
+        <h3 class="text-xl font-bold leading-tight mb-3">
+            <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxPSWN6NWVza21XRUJFOV96UWZiWUJvZHRzdURfalc4dGgzQ1hTWlhROS01aXdvV2ktWUtFVlZMVUNTNnZyaFhBYUtnY1owMFJHTFV2d0JRVEtjZU1aUFVoaG4zeXlQalBNWm42bnF6OUlrWGQ4Q0FrejVrNmd2bVNCd1AtbHotUGlEU1JQX2U4bWhfS2NlaVpsQ1pnaWJ6TzRLekHSAaIBQVVfeXFMT0ljejVlc2ttV0VCRTlfelFmYllCb2R0c3VEX2pXOHRoM0NYU1pYUTktNWl3b1dpLVlLRVZWTFVDUzZ2cmhYQWFLZ2NaMDBSR0xVdndCUVRLY2VNWlBVaGhuM3l5UGpQTVpuNm5xejlJa1hkOENBa3o1azZndm1TQndQLWx6LVBpRFNSUF9lOG1oX0tjZWlabENaZ2liek80S3pB?oc=5" target="_blank" class="hover:text-gray-400 transition-colors">GQI’s Quantum Technology Framework for the Energy Value Chain - Quantum Computing Report</a>
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Insightful summary coming shortly.</p>
+        <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxPSWN6NWVza21XRUJFOV96UWZiWUJvZHRzdURfalc4dGgzQ1hTWlhROS01aXdvV2ktWUtFVlZMVUNTNnZyaFhBYUtnY1owMFJHTFV2d0JRVEtjZU1aUFVoaG4zeXlQalBNWm42bnF6OUlrWGQ4Q0FrejVrNmd2bVNCd1AtbHotUGlEU1JQX2U4bWhfS2NlaVpsQ1pnaWJ6TzRLekHSAaIBQVVfeXFMT0ljejVlc2ttV0VCRTlfelFmYllCb2R0c3VEX2pXOHRoM0NYU1pYUTktNWl3b1dpLVlLRVZWTFVDUzZ2cmhYQWFLZ2NaMDBSR0xVdndCUVRLY2VNWlBVaGhuM3l5UGpQTVpuNm5xejlJa1hkOENBa3o1azZndm1TQndQLWx6LVBpRFNSUF9lOG1oX0tjZWlabENaZ2liek80S3pB?oc=5" target="_blank" class="text-[9px] font-black border-b border-black pb-0.5 tracking-widest uppercase">Read More →</a>
+    </div>
+    
+    <div class="news-card" data-title="clarivate reveals the ai50 - the organizations leading artificial intelligence invention - pr newswire">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80" class="banner-img mb-4">
+        <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">AI</div>
+        <h3 class="text-xl font-bold leading-tight mb-3">
+            <a href="https://news.google.com/rss/articles/CBMi2wFBVV95cUxPXzlQMHRVRzdTSkI3WHRDa0lxdlZJaGw0WnpHd2VRX0NuRzJ4aXQ3WTA2cy03VUUyaFkteEJ3SGwwYXR6QVU3bWRmLUhEZFNMbm9UVzhCSmlBUTREQ3BPTTU5R2IxUncwbWp5WU16dXpYRUtDWVdWenZCRjBTbkVsUXlVOTl1RmtRZ2txNDROYTVvSUw5OUFnYjFiTGU5eHhEU1ktRmNEUW5aZWo3WE9sdVpHTkVMTkRSQmt0T1JFNW9uRGFGN256RS1KUUNUUFJHLU1CMjVlUEluaVE?oc=5" target="_blank" class="hover:text-gray-400 transition-colors">Clarivate Reveals the AI50 - the Organizations Leading Artificial Intelligence Invention - PR Newswire</a>
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Insightful summary coming shortly.</p>
+        <a href="https://news.google.com/rss/articles/CBMi2wFBVV95cUxPXzlQMHRVRzdTSkI3WHRDa0lxdlZJaGw0WnpHd2VRX0NuRzJ4aXQ3WTA2cy03VUUyaFkteEJ3SGwwYXR6QVU3bWRmLUhEZFNMbm9UVzhCSmlBUTREQ3BPTTU5R2IxUncwbWp5WU16dXpYRUtDWVdWenZCRjBTbkVsUXlVOTl1RmtRZ2txNDROYTVvSUw5OUFnYjFiTGU5eHhEU1ktRmNEUW5aZWo3WE9sdVpHTkVMTkRSQmt0T1JFNW9uRGFGN256RS1KUUNUUFJHLU1CMjVlUEluaVE?oc=5" target="_blank" class="text-[9px] font-black border-b border-black pb-0.5 tracking-widest uppercase">Read More →</a>
+    </div>
+    
+    <div class="news-card" data-title="can artificial intelligence fix social science? - city journal">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80" class="banner-img mb-4">
+        <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">AI</div>
+        <h3 class="text-xl font-bold leading-tight mb-3">
+            <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxQREdNQzhtTVhVcklReDJfWDZZTXMzQXU3RWg3UmlwbkhuaW1pZl9yZWFhczA4bnFCemh4SzcyUXJDT2h3ckFZTjBGelhodk4tSGhHZnVtM0dNQXRGbjhhRFM2NmJpOHlsZ0ZqSXNvb1BFVHlYUXFaUkpnZkxyWEszVQ?oc=5" target="_blank" class="hover:text-gray-400 transition-colors">Can Artificial Intelligence Fix Social Science? - City Journal</a>
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Insightful summary coming shortly.</p>
+        <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxQREdNQzhtTVhVcklReDJfWDZZTXMzQXU3RWg3UmlwbkhuaW1pZl9yZWFhczA4bnFCemh4SzcyUXJDT2h3ckFZTjBGelhodk4tSGhHZnVtM0dNQXRGbjhhRFM2NmJpOHlsZ0ZqSXNvb1BFVHlYUXFaUkpnZkxyWEszVQ?oc=5" target="_blank" class="text-[9px] font-black border-b border-black pb-0.5 tracking-widest uppercase">Read More →</a>
+    </div>
+    
+    <div class="news-card" data-title="how artificial intelligence is useful to cattle producers - farm progress">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80" class="banner-img mb-4">
+        <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">AI</div>
+        <h3 class="text-xl font-bold leading-tight mb-3">
+            <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxNSjZQcEJxZ1NuZG9JSThnYWI3Mk4zbmNNQTUyZDF6QVlUbldKVVJpY041UDNiTEJLUUdpdGFGTTlaMFE5SkRQbzBmR1FIWFd3U0RPNjhZRXlfYTI3UVZ2NEgxTW1yMTJZMG5HWV9nZTZHZnItal9DQ25GWld1MEhNMUdraV9ZYjFYQ3dlSjVoWWFjcWdLZU9IaTBnZHY?oc=5" target="_blank" class="hover:text-gray-400 transition-colors">How artificial intelligence is useful to cattle producers - Farm Progress</a>
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Insightful summary coming shortly.</p>
+        <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxNSjZQcEJxZ1NuZG9JSThnYWI3Mk4zbmNNQTUyZDF6QVlUbldKVVJpY041UDNiTEJLUUdpdGFGTTlaMFE5SkRQbzBmR1FIWFd3U0RPNjhZRXlfYTI3UVZ2NEgxTW1yMTJZMG5HWV9nZTZHZnItal9DQ25GWld1MEhNMUdraV9ZYjFYQ3dlSjVoWWFjcWdLZU9IaTBnZHY?oc=5" target="_blank" class="text-[9px] font-black border-b border-black pb-0.5 tracking-widest uppercase">Read More →</a>
+    </div>
+    
     </main>
-    <footer class="max-w-4xl mx-auto px-6 py-20 text-center text-[10px] text-gray-300 uppercase tracking-[0.3em]">
-        &copy; 2026 UNICRISAI • AUTOMATED INTELLIGENCE
-    </footer>
+    <script>
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('.news-card').forEach(card => {
+                const title = card.getAttribute('data-title');
+                card.style.display = title.includes(term) ? 'block' : 'none';
+            });
+        });
+    </script>
 </body>
 </html>
