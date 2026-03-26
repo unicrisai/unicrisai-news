@@ -1,13 +1,14 @@
 import os
 import json
+import random
 import feedparser
 import google.generativeai as genai
 from datetime import datetime
 
-# 1. Setup Gemini with safety bypass
+# 1. SETUP GEMINI WITH SAFETY BYPASS
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
-# We tell Gemini to be less restrictive for our news summaries
+# We disable blocks to ensure tech news summaries aren't censored
 safety_settings = [
     { "category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE" },
     { "category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE" },
@@ -20,72 +21,63 @@ model = genai.GenerativeModel(
     safety_settings=safety_settings
 )
 
-# ... (Keep the rest of your FEEDS and Archive logic)
+# 2. NEWS SOURCES
+FEEDS = {
+    "AI": "https://news.google.com/rss/search?q=Artificial+Intelligence+when:24h",
+    "Deep Tech": "https://news.google.com/rss/search?q=Deep+Tech+OR+Quantum+Computing+when:24h",
+    "South East Asia": "https://news.google.com/rss/search?q=South+East+Asia+Tech+Startup+when:24h"
+}
 
 def get_ai_summary(title):
-    # We give Gemini a very specific "persona" to help it focus
-    prompt = f"""
-    You are a high-level tech curator. 
-    Summarize this headline into 2 professional sentences for an innovation newsletter.
-    Headline: {title}
-    """
+    prompt = f"Write a 2-sentence executive summary for this tech news headline. Focus on the innovation. Headline: {title}"
     try:
         response = model.generate_content(prompt)
-        # Check if the response actually has text
         if response.text:
             return response.text.strip()
-        else:
-            return "Breaking news in development. Full details at the source link."
+        return "Insightful tech update. View full article for details."
     except Exception as e:
-        # This will help us see if there's a specific error in the logs
-        print(f"API Error for '{title}': {e}")
-        return "Summary being refined. View full article for immediate details."
+        print(f"Gemini Error: {e}")
+        return "Summary being refined. Full details available at source."
 
-# --- ARCHIVE LOGIC ---
-# Load existing news or start fresh
+# 3. ARCHIVE LOGIC (JSON DATABASE)
 if os.path.exists("data.json"):
     with open("data.json", "r") as f:
         archive = json.load(f)
 else:
     archive = []
 
-# Fetch new stories
-new_stories = []
+# Fetch and Add New Stories
 for category, url in FEEDS.items():
     feed = feedparser.parse(url)
     for entry in feed.entries[:3]:
-        # Check if we already have this story (by link)
         if not any(item['link'] == entry.link for item in archive):
             summary = get_ai_summary(entry.title)
             
-            # This creates more variety by adding a random number to the search
-        import random
-        r = random.randint(1, 100)
-        
-        if category == "AI": 
-            image_url = f"https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80&sig={r}"
-        elif category == "Deep Tech": 
-            image_url = f"https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80&sig={r}"
-        else: # South East Asia
-            image_url = f"https://images.unsplash.com/photo-1528154291023-a6525fabe5b4?w=800&q=80&sig={r}"
+            # Variety for Banners using different high-quality tech photos
+            # We add a random 'sig' number to the URL to force Unsplash to give a different photo
+            r = random.randint(1, 1000)
+            img_map = {
+                "AI": f"https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80&sig={r}",
+                "Deep Tech": f"https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80&sig={r}",
+                "South East Asia": f"https://images.unsplash.com/photo-1528154291023-a6525fabe5b4?w=800&q=80&sig={r}"
+            }
 
             archive.insert(0, {
                 "title": entry.title,
                 "link": entry.link,
                 "summary": summary,
                 "category": category,
-                "image": img,
+                "image": img_map.get(category),
                 "date": datetime.now().strftime('%Y-%m-%d')
             })
 
-# Keep only the last 50 stories to keep it fast
+# Keep last 50 entries
 archive = archive[:50]
 
-# Save updated archive
 with open("data.json", "w") as f:
     json.dump(archive, f)
 
-# --- HTML GENERATION ---
+# 4. HTML GENERATION (The UI)
 html_start = f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -95,15 +87,16 @@ html_start = f"""
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {{ background: white; color: black; }}
-        .banner-img {{ filter: grayscale(100%); height: 120px; width: 100%; object-fit: cover; border-radius: 2px; }}
-        .news-card {{ border-bottom: 1px solid #f3f4f6; padding: 2.5rem 0; }}
+        .banner-img {{ filter: grayscale(100%); height: 140px; width: 100%; object-fit: cover; border-radius: 2px; transition: 0.4s; }}
+        .banner-img:hover {{ filter: grayscale(0%); }}
+        .news-card {{ border-bottom: 1px solid #f3f4f6; padding: 3rem 0; }}
         input:focus {{ outline: none; border-bottom: 2px solid black; }}
     </style>
 </head>
 <body class="font-sans antialiased">
     <header class="max-w-2xl mx-auto pt-16 px-6">
         <h1 class="text-4xl font-black tracking-tighter uppercase">UnicrisAI</h1>
-        <div class="flex justify-between items-center mt-4 text-[10px] tracking-[0.3em] text-gray-400 uppercase">
+        <div class="flex justify-between items-center mt-4 text-[10px] tracking-[0.4em] text-gray-400 uppercase">
             <div>DEEP TECH • AI • SEA</div>
             <div>{datetime.now().strftime('%Y-%m-%d')}</div>
         </div>
@@ -115,23 +108,25 @@ html_start = f"""
     <main id="newsContainer" class="max-w-2xl mx-auto px-6 py-8">
 """
 
-# Generate cards from archive
 cards_html = ""
 for item in archive:
     cards_html += f"""
     <div class="news-card" data-title="{item['title'].lower()}">
-        <img src="{item['image']}" class="banner-img mb-4">
-        <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">{item['category']}</div>
-        <h3 class="text-xl font-bold leading-tight mb-3">
+        <img src="{item['image']}" class="banner-img mb-6">
+        <div class="text-[9px] font-bold tracking-[0.2em] text-gray-400 uppercase mb-2">{item['category']}</div>
+        <h3 class="text-2xl font-bold leading-tight mb-4">
             <a href="{item['link']}" target="_blank" class="hover:text-gray-400 transition-colors">{item['title']}</a>
         </h3>
-        <p class="text-gray-500 text-sm leading-relaxed mb-4">{item['summary']}</p>
-        <a href="{item['link']}" target="_blank" class="text-[9px] font-black border-b border-black pb-0.5 tracking-widest uppercase">Read More →</a>
+        <p class="text-gray-600 leading-relaxed mb-6">{item['summary']}</p>
+        <a href="{item['link']}" target="_blank" class="text-[10px] font-black border-b-2 border-black pb-1 tracking-widest uppercase hover:text-gray-400 hover:border-gray-400 transition-all">Read Full Article →</a>
     </div>
     """
 
 html_end = """
     </main>
+    <footer class="max-w-2xl mx-auto px-6 py-24 text-center text-[9px] text-gray-300 uppercase tracking-[0.5em]">
+        &copy; 2026 UNICRISAI • AUTOMATED NEWS ENGINE
+    </footer>
     <script>
         document.getElementById('searchInput').addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
