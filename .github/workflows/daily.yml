@@ -22,7 +22,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install feedparser google-generativeai
+          # 1. Force remove any old or conflicting Google libraries
+          pip uninstall google google-generativeai google-api-core googleapis-common-protos -y
+          # 2. Install the new library fresh
+          pip install google-genai feedparser
 
       - name: Run News Script
         run: python main.py
