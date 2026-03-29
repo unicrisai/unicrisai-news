@@ -2,16 +2,20 @@ import os
 import json
 import random
 import feedparser
-import google.genai as genai
-from google.genai import types
-from datetime import datetime
 import time
+from datetime import datetime
 
-# 1. SETUP CLIENT
-# The client will automatically find your GEMINI_API_KEY secret from the environment
+# 1. DIRECT IMPORT TO AVOID NAMESPACE ERRORS
+try:
+    import google.genai as genai
+    from google.genai import types
+except ImportError:
+    # Fallback for certain environments
+    from google import genai
+    from google.genai import types
+
+# 2. SETUP CLIENT
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-
-# Using the most current stable model
 MODEL_ID = "gemini-2.0-flash" 
 
 def get_ai_summary(title):
@@ -23,7 +27,7 @@ def get_ai_summary(title):
             model=MODEL_ID,
             contents=prompt,
             config=types.GenerateContentConfig(
-                system_instruction="You are a professional tech analyst for UnicrisAI. Provide objective, 2-sentence innovation-focused summaries.",
+                system_instruction="You are a professional tech analyst. Provide objective, 2-sentence summaries.",
                 safety_settings=[
                     types.SafetySetting(category="HARM_CATEGORY_HARASSMENT", threshold="BLOCK_NONE"),
                     types.SafetySetting(category="HARM_CATEGORY_HATE_SPEECH", threshold="BLOCK_NONE"),
@@ -32,18 +36,15 @@ def get_ai_summary(title):
                 ]
             )
         )
-        
         if response.text:
             print("SUCCESS")
             return response.text.strip()
-        
         return "Insightful tech update. View full article for details."
-        
     except Exception as e:
         print(f"API Error: {e}")
         return "Summary being refined. Full details available at source."
 
-# 3. ARCHIVE LOGIC
+# 3. DATA PERSISTENCE
 if os.path.exists("data.json"):
     with open("data.json", "r") as f:
         full_database = json.load(f)
@@ -61,14 +62,12 @@ for category, url in FEEDS.items():
     for entry in feed.entries[:3]:
         if not any(item['link'] == entry.link for item in full_database):
             summary = get_ai_summary(entry.title)
-            
             r = random.randint(1, 1000)
             img_map = {
                 "AI": f"https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80&sig={r}",
                 "Deep Tech": f"https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80&sig={r}",
                 "South East Asia": f"https://images.unsplash.com/photo-1528154291023-a6525fabe5b4?w=800&q=80&sig={r}"
             }
-
             full_database.insert(0, {
                 "title": entry.title,
                 "link": entry.link,
@@ -85,12 +84,7 @@ with open("data.json", "w") as f:
 # 4. HTML GENERATION
 def generate_html(news_items, filename, page_title):
     categories = ["All", "AI", "Deep Tech", "South East Asia"]
-    
-    # Pre-generate buttons to avoid f-string issues
-    button_html = ""
-    for cat in categories:
-        active_class = "active-tab" if cat == "All" else ""
-        button_html += f'<button class="tab-btn {active_class}" onclick="filterCategory(\'{cat}\')">{cat}</button> '
+    button_html = "".join([f'<button class="tab-btn {"active-tab" if cat=="All" else ""}" onclick="filterCategory(\'{cat}\')">{cat}</button> ' for cat in categories])
 
     html_start = f"""
     <!DOCTYPE html>
@@ -107,7 +101,6 @@ def generate_html(news_items, filename, page_title):
             .nav-link {{ font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: bold; margin-right: 20px; }}
             .active-page {{ border-bottom: 2px solid black; padding-bottom: 4px; }}
             .tab-btn {{ font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 12px; border: 1px solid #eee; transition: 0.2s; }}
-            .tab-btn:hover {{ background: #f9f9f9; }}
             .active-tab {{ background: black !important; color: white; border-color: black; }}
         </style>
     </head>
