@@ -32,7 +32,7 @@ def summarize_news(articles):
     
     try:
         response = client.models.generate_content(
-            model="gemini-2.0-flash", 
+            model="gemini-1.5-flash",  # Changed from 2.0 to 1.5
             contents=prompt
         )
         return response.text
