@@ -2,141 +2,22 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
-        <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Latest Updates | UnicrisAI</title>
-        <script src="https://cdn.tailwindcss.com"></script>
+        <meta charset="UTF-8">
+        <title>UnicrisAI News</title>
         <style>
-            body { background: white; color: black; }
-            .active-page { border-bottom: 2px solid black; padding-bottom: 4px; }
-            .active-tab { background: black !important; color: white !important; }
+            body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 20px; color: #333; }
+            .summary { background: #f4f4f4; padding: 15px; border-left: 5px solid #1a73e8; }
         </style>
     </head>
-    <body class="font-sans antialiased">
-        <header class="max-w-2xl mx-auto pt-16 px-6">
-            <h1 class="text-4xl font-black tracking-tighter uppercase">UnicrisAI</h1>
-            
-            <nav class="mt-8 flex gap-6">
-                <a href="index.html" class="text-[10px] uppercase font-bold tracking-widest active-page">Latest Updates</a>
-                <a href="archive.html" class="text-[10px] uppercase font-bold tracking-widest ">Full Archive</a>
-            </nav>
-
-            <div class="mt-12 border-b border-gray-100 pb-2">
-                <input type="text" id="searchInput" placeholder="SEARCH..." class="w-full text-xs tracking-widest uppercase bg-transparent outline-none">
-            </div>
-
-            <div id="tabContainer" class="mt-8 flex flex-wrap">
-                <button class="tab-btn px-4 py-2 text-[10px] uppercase font-bold mr-2 mb-2 bg-black text-white" onclick="filterCategory('All')">All</button><button class="tab-btn px-4 py-2 text-[10px] uppercase font-bold mr-2 mb-2 bg-gray-100 text-black" onclick="filterCategory('AI')">AI</button><button class="tab-btn px-4 py-2 text-[10px] uppercase font-bold mr-2 mb-2 bg-gray-100 text-black" onclick="filterCategory('Deep Tech')">Deep Tech</button><button class="tab-btn px-4 py-2 text-[10px] uppercase font-bold mr-2 mb-2 bg-gray-100 text-black" onclick="filterCategory('South East Asia')">South East Asia</button>
-            </div>
-        </header>
-
-        <main id="newsContainer" class="max-w-2xl mx-auto px-6 py-8">
-    
-        <div class="news-card border-b border-gray-100 py-12" data-title="dainstory globalizes k-food with innovative golden nurungji featuring patented maillard roasting technology - great falls tribune" data-category="South East Asia">
-            <img src="https://images.unsplash.com/photo-1528154291023-a6525fabe5b4?w=800&q=80&sig=614" class="w-full h-40 object-cover mb-6 grayscale hover:grayscale-0 transition-all">
-            <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">South East Asia | 2026-03-29</div>
-            <h3 class="text-2xl font-bold leading-tight mb-4">
-                <a href="https://news.google.com/rss/articles/CBMi_AFBVV95cUxORWI1OTBoUVdGUnc5YXB2MXo3YVVkLTcwQjJQcG5NemhhUkUtazA3alBIY1NHc3FtMzQtUkpTaEtBamJKV09jUkVTRWQtUlQtN2plOFdMXzdLcEY3V1ZTQU1kdGJhRHdMSlY0ejg3QmFzanJrWC1WcGVCYUlWcjhpWHVjZHY4YS1QYWgtT0FMejM5ODNoTVBSMXMzREVXdFJaR0NTS21kNzU0dzd4dVlBcy16amltSnp2YmxNOWxlZzR1VWR1WDRYaHB6cUhFTm0xNjUxQlk1RzRQZ3U2TVNqaDF0UnVGdTJ4MlFzTUNBZVhTWnRaMVFEYzV6QmE?oc=5" target="_blank" class="hover:underline">DAINSTORY Globalizes K-Food with Innovative Golden Nurungji Featuring Patented Maillard Roasting Technology - Great Falls Tribune</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed mb-6">Summary being refined. Full details available at source.</p>
+    <body>
+        <h1>UnicrisAI News Update</h1>
+        <p><strong>Updated:</strong> 2026-03-29 10:38</p>
+        <div class="summary">
+            Summary currently unavailable.
         </div>
-        
-        <div class="news-card border-b border-gray-100 py-12" data-title="m ventures highlights deep-tech networking focus at ofc 2026 - tipranks" data-category="Deep Tech">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80&sig=630" class="w-full h-40 object-cover mb-6 grayscale hover:grayscale-0 transition-all">
-            <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">Deep Tech | 2026-03-29</div>
-            <h3 class="text-2xl font-bold leading-tight mb-4">
-                <a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxNdVViazRZVmJWRDZpcG52Tng3Ty05cjhVWV9FQ0ZSbGpwSzR0VHJiQVFIWGxldGFrUmNwWHpGb2ZlUlF3LXlvcVNYbzdkNFpnQTdyOGZJTFNCQ09PenZacjFOdThFTWt3NDNYRWhRdXE1a1hLRk1va1NrSlNSVEtNOGhEaVRLUjlqVG9XNHRNWG9uNERvTUZFT1EtcXlPNXMzR2E5QkstTU45RENx?oc=5" target="_blank" class="hover:underline">M Ventures Highlights Deep-Tech Networking Focus at OFC 2026 - TipRanks</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed mb-6">Summary being refined. Full details available at source.</p>
-        </div>
-        
-        <div class="news-card border-b border-gray-100 py-12" data-title="spacetech startup bellatrix raises $20m funding - tech in asia" data-category="South East Asia">
-            <img src="https://images.unsplash.com/photo-1528154291023-a6525fabe5b4?w=800&q=80&sig=960" class="w-full h-40 object-cover mb-6 grayscale hover:grayscale-0 transition-all">
-            <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">South East Asia | 2026-03-29</div>
-            <h3 class="text-2xl font-bold leading-tight mb-4">
-                <a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxQVUlxeno5ejRvSUFudjk0MUVEamxpVnFid3NKX2p2WTl2bUY3WGtWd1FPbnFxRVltank0aFA4a1c4elMwRzM4Zzg1TW1uRTczY25TUG11MEJOWlE5SUY5LUVjRVQtRGVZVVVIOHhqLUg4TE9rS3hEcGw2NEtyajdNWGFOT0I?oc=5" target="_blank" class="hover:underline">Spacetech startup Bellatrix raises $20m funding - Tech in Asia</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed mb-6">Summary being refined. Full details available at source.</p>
-        </div>
-        
-        <div class="news-card border-b border-gray-100 py-12" data-title="will anduril founder palmer luckey’s insistence on deferring to u.s. interests scare off the allies he wants to arm? - fortune" data-category="South East Asia">
-            <img src="https://images.unsplash.com/photo-1528154291023-a6525fabe5b4?w=800&q=80&sig=638" class="w-full h-40 object-cover mb-6 grayscale hover:grayscale-0 transition-all">
-            <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">South East Asia | 2026-03-29</div>
-            <h3 class="text-2xl font-bold leading-tight mb-4">
-                <a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxNaFlaN1phMUw5dXdnNmhJbEtlQ2VBMC1XMFJ4bFlYRXNPQ0YwMWxmaEdQNDZjYTM1VlNlcll6bmppQUwwRWdVYVd0REp4RjJsTmt4eVJQR2EtOUNHUnRLMTJZSEpoTFpFSi1ZWWFSUkxUSWZNS0I2eHo2NHdualpkMGtkT0o4eGta?oc=5" target="_blank" class="hover:underline">Will Anduril founder Palmer Luckey’s insistence on deferring to U.S. interests scare off the allies he wants to arm? - Fortune</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed mb-6">Summary being refined. Full details available at source.</p>
-        </div>
-        
-        <div class="news-card border-b border-gray-100 py-12" data-title="australian startup finds niche in southeast asian shrimp farms - nikkei asia" data-category="South East Asia">
-            <img src="https://images.unsplash.com/photo-1528154291023-a6525fabe5b4?w=800&q=80&sig=814" class="w-full h-40 object-cover mb-6 grayscale hover:grayscale-0 transition-all">
-            <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">South East Asia | 2026-03-29</div>
-            <h3 class="text-2xl font-bold leading-tight mb-4">
-                <a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxPbDJjcjJ3RGJuenJFU1BCLThXSUtmeEZGNjBhd2xYQ25kTy1HUzlIUmJvR2ZZWUZ3NkpZRldwSW5fX0x0aUdzWU9Gcm9GRXhuZzdHRG5oOGx4SXlhMHhMeGVKWmJMc0tjbVE4OW5PNHRGZzdKYXZCcVRuWlVWZ0c5SlEzWkFrQXlEbjNhazltUnktR2Z2MVk3UGVSMTRSTko2WXlHYzBTdUtCNkk?oc=5" target="_blank" class="hover:underline">Australian startup finds niche in Southeast Asian shrimp farms - Nikkei Asia</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed mb-6">Summary being refined. Full details available at source.</p>
-        </div>
-        
-        <div class="news-card border-b border-gray-100 py-12" data-title="japanese scientists using quantum computers to search for dark matter - forbes" data-category="Deep Tech">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80&sig=712" class="w-full h-40 object-cover mb-6 grayscale hover:grayscale-0 transition-all">
-            <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">Deep Tech | 2026-03-29</div>
-            <h3 class="text-2xl font-bold leading-tight mb-4">
-                <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxQdVNvZXpuam9oRmFnOXJXNEdnWENuMHIyaC1IOGpxT3RxRU5HNDVPNGJEWVZLTDlWOEZmWExyUThYQ3F5MGxkTVJmRXltMklKQlI1NzNCR2tjR0FGNHNteXlLVXRZYzlSQU10RlhBa1pKZ1hfaVFtczBieDlBTnc1dmFFMXBRaXBiM0JKdDM2UzNnSnRBcnlSanE5Wkh5MjBNYVQ3VGkxM1dJTjBCRXJvZmhJaTRWMTZIR1I3QldITXE?oc=5" target="_blank" class="hover:underline">Japanese Scientists Using Quantum Computers To Search For Dark Matter - Forbes</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed mb-6">Summary being refined. Full details available at source.</p>
-        </div>
-        
-        <div class="news-card border-b border-gray-100 py-12" data-title="guest post -- quantum digital twins: the missing acceleration layer for quantum hardware - the quantum insider" data-category="Deep Tech">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80&sig=637" class="w-full h-40 object-cover mb-6 grayscale hover:grayscale-0 transition-all">
-            <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">Deep Tech | 2026-03-29</div>
-            <h3 class="text-2xl font-bold leading-tight mb-4">
-                <a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxQNnpUbmF0OE1pdVZsRWkxRDY3U0ZlcFpTRHR5aWR4bW5BdlJ2UlBpbDdHSnE4VlhrMjNXODlCX0NvNkR5WEY5MzlSWFFMcnZ0ZFhwZGNYRkV5N3JPQ0FYeThWeWpROXJQcUF0cExodGtQaG1MNHZkSVR2N2NFMEtWTUdZLUdHX2xiNzRIck5QSVpZb09IbFFHbzdRUzZFQ3BJU0YwcDY3Mkh2UjZJX21wQzNHblV1NFpvaXM1VE9rWl9vOW9G?oc=5" target="_blank" class="hover:underline">Guest Post -- Quantum Digital Twins: The Missing Acceleration Layer for Quantum Hardware - The Quantum Insider</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed mb-6">Summary being refined. Full details available at source.</p>
-        </div>
-        
-        <div class="news-card border-b border-gray-100 py-12" data-title="'quantum computing talent should be used for good' - bbc" data-category="Deep Tech">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80&sig=385" class="w-full h-40 object-cover mb-6 grayscale hover:grayscale-0 transition-all">
-            <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">Deep Tech | 2026-03-29</div>
-            <h3 class="text-2xl font-bold leading-tight mb-4">
-                <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE05UURvVmo2YlBybTFaTzV0ZjFvaG5jT1lUNmE5eHVjY0RDWF9QeEhhTkxabUh4MjMtOG5ucEVLSExNM2FqQU5OUjRsTFd1QmJxQnJiX3VUMC1pQQ?oc=5" target="_blank" class="hover:underline">'Quantum computing talent should be used for good' - BBC</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed mb-6">Summary being refined. Full details available at source.</p>
-        </div>
-        
-        <div class="news-card border-b border-gray-100 py-12" data-title="tech days returns to unm with focus on artificial intelligence, innovation - unm newsroom" data-category="AI">
-            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80&sig=469" class="w-full h-40 object-cover mb-6 grayscale hover:grayscale-0 transition-all">
-            <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">AI | 2026-03-29</div>
-            <h3 class="text-2xl font-bold leading-tight mb-4">
-                <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxNdDRTdzNEXzNDaVpzRi1FUWJmdGV6RzgtOW5Kb2pFMnByMjdPWDZfQ1dSanpnUWtmX3BySXJGbU9uMFlYelJCZ2hWcWJhSVh4NWdidkwwb05TXzZScnRQUkpINXhjS3Qta1VRb3YzQXdjdWFEOEhTMVF5ZGhCUXoxS1dhRUNYblFXdS1NdVBJQjU1X0JHT3NieTlfZ2ZMWGZr?oc=5" target="_blank" class="hover:underline">Tech Days returns to UNM with focus on artificial intelligence, innovation - UNM Newsroom</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed mb-6">Summary being refined. Full details available at source.</p>
-        </div>
-        
-        <div class="news-card border-b border-gray-100 py-12" data-title="how ai is quietly reshaping what we believe - the times of israel" data-category="AI">
-            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80&sig=200" class="w-full h-40 object-cover mb-6 grayscale hover:grayscale-0 transition-all">
-            <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">AI | 2026-03-29</div>
-            <h3 class="text-2xl font-bold leading-tight mb-4">
-                <a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxOenNxejdUSkg0RUNRWGFVbFZXZEVTTE9xYzY2SGhncnNyd2RHczFNOVYxN1VLQnE3dkZZR3pPaWpKZEJURlFDYVFxZ04xNkQ1b0dHTkpWRS1yZUJHeUkyT2pXWThSUnhHXzFvclR5bDZqVzdKTFFLYjFnQ3kwQ2NONmh3?oc=5" target="_blank" class="hover:underline">How AI Is Quietly Reshaping What We Believe - The Times of Israel</a>
-            </h3>
-            <p class="text-gray-600 leading-relaxed mb-6">Summary being refined. Full details available at source.</p>
-        </div>
-        
-        </main>
-        <script>
-            function filterCategory(cat) {
-                document.querySelectorAll('.tab-btn').forEach(btn => {
-                    btn.classList.toggle('active-tab', btn.innerText === cat);
-                });
-                const cards = document.querySelectorAll('.news-card');
-                const term = document.getElementById('searchInput').value.toLowerCase();
-                cards.forEach(card => {
-                    const matchesCat = (cat === 'All' || card.dataset.category === cat);
-                    const matchesSearch = card.dataset.title.includes(term);
-                    card.style.display = (matchesCat && matchesSearch) ? 'block' : 'none';
-                });
-            }
-            document.getElementById('searchInput').addEventListener('input', () => filterCategory(document.querySelector('.active-tab').innerText));
-        </script>
+        <h3>Top Stories</h3>
+        <ul><li><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxQVHlRbXh4cGwxa3NXNU1DTmFLWUd3bmM2Z1FUQTFrU2FIbkF0aE55eUhteVU4TDFtdkVPYWV5NUFqaHlNRS0ySXZKVUw3SUpZMnZzNzVCN2hKYzJqTWNiLUZXbXVZblhHbkZJdDhYT2RUU3dRdXRTZDh0Wm1JUkJaV0FIWlJxbjZ2UWJlTWR6eUxpT3lBczgyX0xoYi03SUxNdWdMc2sydWRLQQ?oc=5" target="_blank">BlueTide Capital signs MOU with SEPA to support expansion in deep tech markets - space & defense</a></li><li><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxNcklSRHR1eHI5cFVMMTVGSy1Tb21mNDNBSkwxRk90bFB2eUxDY29NdnM0SDdCdTBRN2ZBaHpwcFBXb3c2aTVaMjh5aUxsbXpoRzgyX25QU192NVhPZF9uNklRMWhMOW9ZU1F0bGM4a05wMnA4cF9IS1hEWVhmWGtCdktBX2FWeF9qYkc5SWVQbGpVTWtmamJVVC1zVDllMVdCeFNBcXJJa0JUemFRNjRISzJRbjVzQQ?oc=5" target="_blank">India’s AI Boom: Will VCs Actually Fund It? | Ground Report from Jim Corbett - LinkedIn</a></li><li><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTFBOcnR5RUxjeDFJSW5iX1RBMTIycGtacmVVRFhQbkxCendEbXVmSGdER0ZicFpvRnlkb2FFZkRKLWVuVmxGNjdxN0UwU3ZXS3FDUnVGR3ZHVURtZ2xjR2Z0S01VYWxURlk0SHhDNDFibU4?oc=5" target="_blank">Deep tech start-ups thrive in Europe’s push for digital independence - Financial Times</a></li><li><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE1Mb1A0VXE0bGVjMDMzc01QOTR4eFdTeXF2U3Y2aUlyV3lUNE1FZXpTU09Hbkpnam9kbVBQUnNHMU1OMWZ1UkJoODFrUXJnUURmYW4yZlJZNEZKVE5ncVQ1UV9SVUFOZzFMZVFLTUFfUkZ4UQ?oc=5" target="_blank">Q.ai: Apple’s quiet deep-tech bet - blogs.timesofisrael.com</a></li><li><a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxPU2JnWVZCMjc3dHNuYUg3NlVBaW95UHFSSWtteUppU2M1MmJydkZLVlFETkNFTDdXQWlJZEFtbWpMRkNoWHFhTVdBRl9nTW9yalpXWmtNQ2tIbUE5Yjc1NDRxOGU5czllXzVvY203VUJaelAtV2pFbjdjLVplWHNfVTdTYWtBbVk?oc=5" target="_blank">VCs Crown Top 8 Startups from YC's W26 Demo Day - The Tech Buzz</a></li><li><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE9BZUlXZzZHMkFFOVg2SnFFT0lodUFja2daSzNIakhfT21LYnBtaTY4bUtpN3ZmMTVhT05fRlBpRHdxSHJKVjAyMTJ6c0x2cnllblNhWFdRdjZLLVdPa1lTd0VXOA?oc=5" target="_blank">Israel’s next strategic bet is Deep Tech, not just AI - The Jerusalem Post</a></li><li><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE5vbjlCVGZWU1RtNUkzeWtDRzlsZTBiOXViNlFJQnNaUEZhcmNaNFpsbGpxdDVmZ2pLc3U4amNJdVBUaDA2aWQtX0lIMDlyaEk5ak5tY1E3U1NwSG5EVVBFOEszaVpfemFhakp3NnRoTVFIY2hOaC1CcnhVOXM?oc=5" target="_blank">How Blockchain Helps Reduce Bias in AI Models - Blockchain Council</a></li><li><a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxObjlsUl9veG92S2ItbF9LQjJwbzBDN1p5emxrV1F2V3BpamxfOE5BbUZWaFRDenlCTUZUSlAtRFJTMTNFYVpSam04d1VBRzNuRTBtTWhteDJab1FJVTNiaHhoaWt2OXdveUt2dkhiVG1ZX2Z1UEZWQWlEdDd0WWVNRWZjdVZFOU1WTEpKMFJRNDdZRDBSQTRKWFhHV2F0M2tuOTV1LWZidWZIaVc4V1FlT25FcWgtMzhaN2taLTIzZ3FHcWRaMlhGblpKMHlXUQ?oc=5" target="_blank">Quantum, AI And The 2035 Innovation State -- A Deep Dive Into China’s Five-Year, Deep Tech Vision - The Quantum Insider</a></li></ul>
+        <p><a href="archive.html">View Archive</a></p>
     </body>
     </html>
     
