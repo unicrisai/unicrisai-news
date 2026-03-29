@@ -1,17 +1,19 @@
 name: Update News
+
 on:
   schedule:
-    # This runs at 01:00 UTC (which is 8:00 AM in Bangkok)
+    # Runs at 01:00 UTC (8:00 AM Bangkok)
     - cron: '0 1 * * *'
-  workflow_dispatch: # This adds a "Run now" button so we can test it!
+  workflow_dispatch: # Allows manual testing from the "Actions" tab
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # This gives the action permission to update your site
+      contents: write
     steps:
-      - uses: actions/checkout@v4.1.1
+      - name: Checkout Repository
+        uses: actions/checkout@v4.1.1
 
       - name: Set up Python
         uses: actions/setup-python@v5.0.0
@@ -27,10 +29,11 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
-      - name: Commit and Push index.html
+      - name: Commit and Push All Changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add index.html
-          git commit -m "Update news for $(date)" || echo "No changes to commit"
+          # We add all three files to ensure the archive and database are preserved
+          git add index.html archive.html data.json
+          git commit -m "Update news and archive: $(date)" || echo "No changes to commit"
           git push
