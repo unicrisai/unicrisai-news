@@ -2,51 +2,62 @@ import os
 import json
 import random
 import feedparser
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 from datetime import datetime
 import time
 
-# 1. SETUP GEMINI
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+# 1. SETUP NEW GENAI CLIENT
+# The new SDK automatically looks for the GEMINI_API_KEY env var
+client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
-safety_settings = [
-    { "category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE" },
-    { "category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE" },
-    { "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE" },
-    { "category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE" },
-]
-
-model = genai.GenerativeModel('gemini-1.5-flash', safety_settings=safety_settings)
-
-# 2. NEWS SOURCES
-FEEDS = {
-    "AI": "https://news.google.com/rss/search?q=Artificial+Intelligence+when:24h",
-    "Deep Tech": "https://news.google.com/rss/search?q=Deep+Tech+OR+Quantum+Computing+when:24h",
-    "South East Asia": "https://news.google.com/rss/search?q=South+East+Asia+Tech+Startup+when:24h"
-}
+# Use the latest stable model as of 2026
+MODEL_ID = "gemini-2.0-flash" 
 
 def get_ai_summary(title):
-    # DEBUG: Print what we are sending
     print(f"--- Requesting Summary for: {title[:50]}... ---")
     prompt = f"Write a 2-sentence executive summary for this tech news headline. Focus on the innovation. Headline: {title}"
+    
     try:
-        response = model.generate_content(prompt)
-        if response.candidates and response.candidates[0].content.parts:
+        # New SDK syntax: client.models.generate_content
+        response = client.models.generate_content(
+            model=MODEL_ID,
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                system_instruction="You are a professional tech analyst. Provide objective, 2-sentence summaries.",
+                # Safety settings are now part of the config
+                safety_settings=[
+                    types.SafetySetting(category="HARM_CATEGORY_HARASSMENT", threshold="BLOCK_NONE"),
+                    types.SafetySetting(category="HARM_CATEGORY_HATE_SPEECH", threshold="BLOCK_NONE"),
+                    types.SafetySetting(category="HARM_CATEGORY_DANGEROUS_CONTENT", threshold="BLOCK_NONE"),
+                    types.SafetySetting(category="HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold="BLOCK_NONE"),
+                ]
+            )
+        )
+        
+        if response.text:
             text = response.text.strip()
             print(f"SUCCESS: {text[:50]}...")
             return text
-        print("BLOCKED: Gemini returned an empty candidate (Safety filter?)")
+        
         return "Insightful tech update. View full article for details."
+        
     except Exception as e:
-        print(f"ERROR: {e}")
+        print(f"API Error for '{title}': {e}")
         return "Summary being refined. Full details available at source."
 
-# 3. DATA PERSISTENCE
+# 3. DATA PERSISTENCE (Remains the same logic)
 if os.path.exists("data.json"):
     with open("data.json", "r") as f:
         full_database = json.load(f)
 else:
     full_database = []
+
+FEEDS = {
+    "AI": "https://news.google.com/rss/search?q=Artificial+Intelligence+when:24h",
+    "Deep Tech": "https://news.google.com/rss/search?q=Deep+Tech+OR+Quantum+Computing+when:24h",
+    "South East Asia": "https://news.google.com/rss/search?q=South+East+Asia+Tech+Startup+when:24h"
+}
 
 for category, url in FEEDS.items():
     feed = feedparser.parse(url)
@@ -69,20 +80,15 @@ for category, url in FEEDS.items():
                 "image": img_map.get(category),
                 "date": datetime.now().strftime('%Y-%m-%d')
             })
-            time.sleep(2) # Increased sleep to be safe
+            time.sleep(1)
 
 with open("data.json", "w") as f:
     json.dump(full_database, f)
 
-# 4. UI GENERATION
+# 4. UI GENERATION (Same logic as before)
 def generate_html(news_items, filename, page_title):
     categories = ["All", "AI", "Deep Tech", "South East Asia"]
-    
-    # We use a very explicit style for the buttons to make sure they show up
-    button_html = ""
-    for cat in categories:
-        active_class = "bg-black text-white" if cat == "All" else "bg-gray-100 text-black"
-        button_html += f'<button class="tab-btn px-4 py-2 text-[10px] uppercase font-bold mr-2 mb-2 {active_class}" onclick="filterCategory(\'{cat}\')">{cat}</button>'
+    button_html = "".join([f'<button class="tab-btn {"active-tab" if cat=="All" else ""}" onclick="filterCategory(\'{cat}\')">{cat}</button> ' for cat in categories])
 
     html_start = f"""
     <!DOCTYPE html>
@@ -93,46 +99,55 @@ def generate_html(news_items, filename, page_title):
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
             body {{ background: white; color: black; }}
+            .banner-img {{ filter: grayscale(100%); height: 140px; width: 100%; object-fit: cover; border-radius: 2px; transition: 0.4s; }}
+            .banner-img:hover {{ filter: grayscale(0%); }}
+            .news-card {{ border-bottom: 1px solid #f3f4f6; padding: 3rem 0; }}
+            .nav-link {{ font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: bold; margin-right: 20px; }}
             .active-page {{ border-bottom: 2px solid black; padding-bottom: 4px; }}
-            .active-tab {{ background: black !important; color: white !important; }}
+            .tab-btn {{ font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 12px; border: 1px solid #eee; transition: 0.2s; }}
+            .active-tab {{ background: black !important; color: white; border-color: black; }}
         </style>
     </head>
     <body class="font-sans antialiased">
         <header class="max-w-2xl mx-auto pt-16 px-6">
             <h1 class="text-4xl font-black tracking-tighter uppercase">UnicrisAI</h1>
-            
-            <nav class="mt-8 flex gap-6">
-                <a href="index.html" class="text-[10px] uppercase font-bold tracking-widest {'active-page' if filename=='index.html' else ''}">Latest Updates</a>
-                <a href="archive.html" class="text-[10px] uppercase font-bold tracking-widest {'active-page' if filename=='archive.html' else ''}">Full Archive</a>
+            <nav class="mt-6 flex">
+                <a href="index.html" class="nav-link {'active-page' if filename=='index.html' else ''}">Latest</a>
+                <a href="archive.html" class="nav-link {'active-page' if filename=='archive.html' else ''}">Archive</a>
             </nav>
-
+            <div class="flex justify-between items-center mt-8 text-[10px] tracking-[0.4em] text-gray-400 uppercase">
+                <div>{page_title}</div>
+                <div>{datetime.now().strftime('%Y-%m-%d')}</div>
+            </div>
             <div class="mt-12 border-b border-gray-100 pb-2">
                 <input type="text" id="searchInput" placeholder="SEARCH..." class="w-full text-xs tracking-widest uppercase bg-transparent outline-none">
             </div>
-
-            <div id="tabContainer" class="mt-8 flex flex-wrap">
+            <div id="tabContainer" class="mt-6 flex flex-wrap gap-2">
                 {button_html}
             </div>
         </header>
-
         <main id="newsContainer" class="max-w-2xl mx-auto px-6 py-8">
     """
     
     cards_html = ""
     for item in news_items:
         cards_html += f"""
-        <div class="news-card border-b border-gray-100 py-12" data-title="{item['title'].lower()}" data-category="{item['category']}">
-            <img src="{item['image']}" class="w-full h-40 object-cover mb-6 grayscale hover:grayscale-0 transition-all">
-            <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">{item['category']} | {item['date']}</div>
+        <div class="news-card" data-title="{item['title'].lower()}" data-category="{item['category']}">
+            <img src="{item['image']}" class="banner-img mb-6">
+            <div class="text-[9px] font-bold tracking-[0.2em] text-gray-400 uppercase mb-2">{item['category']} | {item['date']}</div>
             <h3 class="text-2xl font-bold leading-tight mb-4">
-                <a href="{item['link']}" target="_blank" class="hover:underline">{item['title']}</a>
+                <a href="{item['link']}" target="_blank" class="hover:text-gray-400 transition-colors">{item['title']}</a>
             </h3>
             <p class="text-gray-600 leading-relaxed mb-6">{item['summary']}</p>
+            <a href="{item['link']}" target="_blank" class="text-[10px] font-black border-b-2 border-black pb-1 tracking-widest uppercase">Read More →</a>
         </div>
         """
 
     html_end = """
         </main>
+        <footer class="max-w-2xl mx-auto px-6 py-24 text-center text-[9px] text-gray-300 uppercase tracking-[0.5em]">
+            &copy; 2026 UNICRISAI • AUTOMATED NEWS ENGINE
+        </footer>
         <script>
             function filterCategory(cat) {
                 document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -146,7 +161,10 @@ def generate_html(news_items, filename, page_title):
                     card.style.display = (matchesCat && matchesSearch) ? 'block' : 'none';
                 });
             }
-            document.getElementById('searchInput').addEventListener('input', () => filterCategory(document.querySelector('.active-tab').innerText));
+            document.getElementById('searchInput').addEventListener('input', () => {
+                const activeTab = document.querySelector('.active-tab').innerText;
+                filterCategory(activeTab);
+            });
         </script>
     </body>
     </html>
