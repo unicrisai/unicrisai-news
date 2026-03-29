@@ -118,7 +118,7 @@ def generate_html(news_items, filename, page_title):
             </div>
 
             <div id="tabContainer" class="mt-6 flex flex-wrap gap-2">
-                {" ".join([f'<button class="tab-btn {"active-tab" if cat=="All" else ""}" onclick="filterCategory(\'{cat}\')">{cat}</button>' for cat in categories])}
+                {" ".join([f"<button class='tab-btn {'active-tab' if cat=='All' else ''}' onclick='filterCategory(\"{cat}\")'>{cat}</button>" for cat in categories])}
             </div>
         </header>
 
