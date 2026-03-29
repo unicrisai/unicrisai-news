@@ -1,21 +1,46 @@
 
     <!DOCTYPE html>
-    <html>
-    <head><style>
-    body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f4f7f6; }
-    .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    h1 { color: #1a73e8; }
-    </style></head>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>UnicrisAI Innovation Engine</title>
+        <style>
+    :root { --primary: #1a73e8; --dark: #2c3e50; --bg: #f8f9fa; }
+    body { font-family: 'Inter', -apple-system, sans-serif; line-height: 1.6; max-width: 900px; margin: auto; padding: 40px 20px; background: var(--bg); color: var(--dark); }
+    .container { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    .header { border-bottom: 2px solid #eee; margin-bottom: 30px; padding-bottom: 20px; }
+    h1 { color: var(--primary); margin: 0; font-size: 2.2em; letter-spacing: -1px; }
+    .timestamp { font-size: 0.9em; color: #7f8c8d; text-transform: uppercase; letter-spacing: 1px; }
+    .summary-section { background: #f0f7ff; padding: 25px; border-radius: 12px; border-left: 6px solid var(--primary); margin-bottom: 40px; }
+    .summary-section h3 { margin-top: 0; color: var(--primary); }
+    .news-list { list-style: none; padding: 0; }
+    .news-list li { margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid #f1f1f1; }
+    .news-list a { color: var(--dark); text-decoration: none; font-weight: 500; font-size: 1.1em; transition: 0.2s; }
+    .news-list a:hover { color: var(--primary); }
+    .source-tag { font-size: 0.75em; background: #eee; padding: 2px 8px; border-radius: 4px; margin-left: 10px; color: #666; vertical-align: middle; }
+    .footer { text-align: center; margin-top: 50px; font-size: 0.9em; border-top: 1px solid #eee; padding-top: 20px; }
+    .archive-link { display: inline-block; margin-top: 20px; color: var(--primary); font-weight: bold; }
+    </style>
+    </head>
     <body>
-        <div class="card">
-            <h1>UnicrisAI News</h1>
-            <p><small>Updated: 2026-03-29 10:58</small></p>
-            <hr>
-            <h3>🤖 AI Summary</h3>
-            <p>Summary generation failed. Check API quota.</p>
-            <hr>
-            <h3>Links</h3>
-            <ul><li><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxQVHlRbXh4cGwxa3NXNU1DTmFLWUd3bmM2Z1FUQTFrU2FIbkF0aE55eUhteVU4TDFtdkVPYWV5NUFqaHlNRS0ySXZKVUw3SUpZMnZzNzVCN2hKYzJqTWNiLUZXbXVZblhHbkZJdDhYT2RUU3dRdXRTZDh0Wm1JUkJaV0FIWlJxbjZ2UWJlTWR6eUxpT3lBczgyX0xoYi03SUxNdWdMc2sydWRLQQ?oc=5" target="_blank">BlueTide Capital signs MOU with SEPA to support expansion in deep tech markets - space & defense</a></li><li><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxNcklSRHR1eHI5cFVMMTVGSy1Tb21mNDNBSkwxRk90bFB2eUxDY29NdnM0SDdCdTBRN2ZBaHpwcFBXb3c2aTVaMjh5aUxsbXpoRzgyX25QU192NVhPZF9uNklRMWhMOW9ZU1F0bGM4a05wMnA4cF9IS1hEWVhmWGtCdktBX2FWeF9qYkc5SWVQbGpVTWtmamJVVC1zVDllMVdCeFNBcXJJa0JUemFRNjRISzJRbjVzQQ?oc=5" target="_blank">India’s AI Boom: Will VCs Actually Fund It? | Ground Report from Jim Corbett - LinkedIn</a></li><li><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTFBOcnR5RUxjeDFJSW5iX1RBMTIycGtacmVVRFhQbkxCendEbXVmSGdER0ZicFpvRnlkb2FFZkRKLWVuVmxGNjdxN0UwU3ZXS3FDUnVGR3ZHVURtZ2xjR2Z0S01VYWxURlk0SHhDNDFibU4?oc=5" target="_blank">Deep tech start-ups thrive in Europe’s push for digital independence - Financial Times</a></li><li><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE1Mb1A0VXE0bGVjMDMzc01QOTR4eFdTeXF2U3Y2aUlyV3lUNE1FZXpTU09Hbkpnam9kbVBQUnNHMU1OMWZ1UkJoODFrUXJnUURmYW4yZlJZNEZKVE5ncVQ1UV9SVUFOZzFMZVFLTUFfUkZ4UQ?oc=5" target="_blank">Q.ai: Apple’s quiet deep-tech bet - blogs.timesofisrael.com</a></li><li><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE9BZUlXZzZHMkFFOVg2SnFFT0lodUFja2daSzNIakhfT21LYnBtaTY4bUtpN3ZmMTVhT05fRlBpRHdxSHJKVjAyMTJ6c0x2cnllblNhWFdRdjZLLVdPa1lTd0VXOA?oc=5" target="_blank">Israel’s next strategic bet is Deep Tech, not just AI - The Jerusalem Post</a></li><li><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE5vbjlCVGZWU1RtNUkzeWtDRzlsZTBiOXViNlFJQnNaUEZhcmNaNFpsbGpxdDVmZ2pLc3U4amNJdVBUaDA2aWQtX0lIMDlyaEk5ak5tY1E3U1NwSG5EVVBFOEszaVpfemFhakp3NnRoTVFIY2hOaC1CcnhVOXM?oc=5" target="_blank">How Blockchain Helps Reduce Bias in AI Models - Blockchain Council</a></li><li><a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxObjlsUl9veG92S2ItbF9LQjJwbzBDN1p5emxrV1F2V3BpamxfOE5BbUZWaFRDenlCTUZUSlAtRFJTMTNFYVpSam04d1VBRzNuRTBtTWhteDJab1FJVTNiaHhoaWt2OXdveUt2dkhiVG1ZX2Z1UEZWQWlEdDd0WWVNRWZjdVZFOU1WTEpKMFJRNDdZRDBSQTRKWFhHV2F0M2tuOTV1LWZidWZIaVc4V1FlT25FcWgtMzhaN2taLTIzZ3FHcWRaMlhGblpKMHlXUQ?oc=5" target="_blank">Quantum, AI And The 2035 Innovation State -- A Deep Dive Into China’s Five-Year, Deep Tech Vision - The Quantum Insider</a></li><li><a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxPRlNiTDkwajhwbDJLQzdjNkpxYy1CSW5tZmdTdkZ6N0R4Y25DbGNjbng4N0RSRTFpTjF5YzR6UWgzUVI4RW5HRUstV3VGVTFIVmsxdlpaTTgtRDdGNDJaakQ5NWdXcG5oRk05eG9tOXpGNWhCODNKOTJZcU5Lc2xoWHB4WDlGenhKWXRyWjFrYkRKUnFUVVBBSXFxakZ0S1hyT0hyVnZ5N0d6QndEWG5jWk40VWQ5bHI0RU83aDR2QWlFRzF0LW03bVBRRVM3TjMzNUE?oc=5" target="_blank">The University of Colorado Ascent Deep Tech Accelerator announces 2026 cohort - University of Colorado Boulder</a></li></ul>
+        <div class="container">
+            <div class="header">
+                <h1>UnicrisAI News</h1>
+                <div class="timestamp">Innovation Engine Update • March 29, 2026 | 11:03</div>
+            </div>
+            
+            <div class="summary-section">
+                <h3>🤖 AI Executive Insights</h3>
+                <p>AI Executive Insights are temporarily offline.</p>
+            </div>
+
+            <h3>Top Deep Tech Stories</h3>
+            <ul class="news-list"><li><a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxPRlNiTDkwajhwbDJLQzdjNkpxYy1CSW5tZmdTdkZ6N0R4Y25DbGNjbng4N0RSRTFpTjF5YzR6UWgzUVI4RW5HRUstV3VGVTFIVmsxdlpaTTgtRDdGNDJaakQ5NWdXcG5oRk05eG9tOXpGNWhCODNKOTJZcU5Lc2xoWHB4WDlGenhKWXRyWjFrYkRKUnFUVVBBSXFxakZ0S1hyT0hyVnZ5N0d6QndEWG5jWk40VWQ5bHI0RU83aDR2QWlFRzF0LW03bVBRRVM3TjMzNUE?oc=5" target="_blank">The University of Colorado Ascent Deep Tech Accelerator announces 2026 cohort - University of Colorado Boulder</a> <span class="source-tag">University of Colorado Boulder</span></li><li><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTFBOcnR5RUxjeDFJSW5iX1RBMTIycGtacmVVRFhQbkxCendEbXVmSGdER0ZicFpvRnlkb2FFZkRKLWVuVmxGNjdxN0UwU3ZXS3FDUnVGR3ZHVURtZ2xjR2Z0S01VYWxURlk0SHhDNDFibU4?oc=5" target="_blank">Deep tech start-ups thrive in Europe’s push for digital independence - Financial Times</a> <span class="source-tag">Financial Times</span></li><li><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxQUVBVUjRzNFdwcWFwV0VKUFNjdmxwSXJEQnlpNnhzbkkwem5oSmFCNG5Dd0x0eUQyMi1fckhGVDNHaGx0S0NFNVlQUlVHZTVPZ2QtTnVRWEtwNEFUSjdoejZqbjY1OGFEcmFWNUo5TXU0VU1QMnBncm9XUnVEcTZLM0xmdTAzVjNlYmREeGIwRzdTUUNCQXdUWTJOcEJOb09nUVNBcG5yRmZrQldRSFlXUmgzSS01UQ?oc=5" target="_blank">Next Wave of Deep Tech Innovators Selected for Phase 2 of Alchemist Chicago - Polsky Center for Entrepreneurship and Innovation</a> <span class="source-tag">Polsky Center for Entrepreneurship and Innovation</span></li><li><a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxQUjdJTldmRlctbkFUcDVPa2dkREF6VWpNdmNrc0pfc0hNTG96LUtfUEZtcUV4UHREZ240Sllfa24zRkQxZDFuUmJ5azBuV1ZMTV9Sdm5ESnU0cWxmVmJEZGFoTnZ2Xzd6QkhpQmhyY21EanF3dXMtUjl1bk9JdWpsUkR0d0JRMjVZcDNVSUFrRDJPenBwWjI4ZFFIZlpZMWFUcUc2MDJsc9IBrAFBVV95cUxON3R1aVJNS2Jra2dqLVVnRmdrLUx4UlAzbEdXM2lqNkpOcUp1VGpIbmQ4TkFTMlpXUW52TnZCS094SkM4TklJekpnVTZuVENpWVFKd05EUVZfeWJFVTJYMHBNd2s4SkNiVVk3THRtdGhWMjEwMW1qb2xwWnJEc2x3OFdlZHNlX0Q2aEZPaDdDUFg0SGNUakhNOGFpWkt3MlFoMkt4d0lSQnlvc2RC?oc=5" target="_blank">LUMO Labs: €6 Million Investment From SETT To Support Deeptech Startups Across Europe - pulse2.com</a> <span class="source-tag">pulse2.com</span></li><li><a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxNQXNGUGRTb01JV1JRcHFnV2I0UHRQeVhrOGNLU3hkLXMyOEdyaVFZY05kMC1fVDVxLWNCZFNsdFVBMjZYSE80dXl0R3NEUDR0MGRlT0RqRGJvcHBnTlcybWx2ckdwV2NvYVJFVU5JcU9ObjRGbDNndjV6RXdmYWhLZDlVaWpTR21OTXVRWGlsT2gwM1JrTEhqZm9ReXNCUlVxQk5BdGtkbG1UN3hWem5sVA?oc=5" target="_blank">India Redraws Rules For Deep Tech Funding To Spur Innovation - Bloomberg.com</a> <span class="source-tag">Bloomberg.com</span></li><li><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE5EVUozUzc3YUNFRk1TQ2NfN1dERVVpQlFOUGtWcWFDTU1Fd1RQVWoyMVh2dlNNQlczTXUzTnZJUDlaSmU5N1BCV1g4U1lLT3k2a3RfRGtkUFUxUy0zdS1GZG54VVVNMlpuZzBfdGNMSk5nVFRUNXhQU2ZvbGY?oc=5" target="_blank">18 Deep Tech Startups from CEE You Should Keep an Eye On - The Recursive</a> <span class="source-tag">The Recursive</span></li><li><a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxNZ0RnQjk0bHVsb09YUkdhenhMRWhxMUYza1dyRjI0NHV4Uy16dENaTkxwNmVoQzh6Q2N2b080UnpiZVlQM1AxZ0w2dWUtbE5NdDV4bnkxR1RfRktmdzZNVjRUUFBZQmdMZEh4eWNFcHF2TzN3Ny01UUw2QXk1MUpSeU5GQUthLUVsbXhRUEdiTWE?oc=5" target="_blank">Why Venture Capital Is Shifting Toward Deep Tech Startups? - vocal.media</a> <span class="source-tag">vocal.media</span></li><li><a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxOV2xpdXdsNF9qWUg3YXdaN1VxSnk3ODI0M2ZoWllfQVN3NHhTajNPWkpYOXBuNS1MODRnNUZndjVuRlpuLUVEcEVHMG1EQVhrWDduVFRoWG5UQVA2ZTJHeEprc1oySEw2QzhkdEp1UnhjWjAxbThoX0lpRnBHUnBEa1dTWFYtbkJYTkNIVDNIRlZKeXNxQV85bFA0RXdUWGI5b3otYms0OEtRT2VmdmZyOHhiRkIzRkZPQVlLQU5zTzd6d1VKR0lYRVo2V1NPNmxGdDY00gHYAUFVX3lxTFBEOGhGS1VaUUREcG1HT1hxcTVIVmNia2piX2dCQXZiMW5saDRuc2J0eVNleEpTbEF0VXRVNzJuR1FqdHZBNlhFckd6d3N4WU5LMnU4dk43cEdmRGdSM3JoQ1RUUVVlWlBXc1V0OXRVczM5THN5dWl4QWJFNTVXOUZqeFo0VE5ZWFltbHFqVDJUNDBBMkhGQ1lzM2NBMXhucURPM3dVamRqdGVSckQ0a3o1bVJSTko2WmZQaEZ4YnJ1dWRMeUZPeS1raENxWGFDLUJPNGN3ekhEeg?oc=5" target="_blank">Who verifies AI? Deep tech startup ArbaLabs looks at the problem of trust - The Korea Times</a> <span class="source-tag">The Korea Times</span></li><li><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE9fSXR2a3RMRU1YckhQa0h4d3FVU3ZpVVhSZ0NDRG5GUnBBYmFuZWY1NWpzWGtkcW1nQnBOcF9oZ0pXaVpFV3J5VDhLNkhGaVBWdTB6LWRaNG5aUHhxbFE2ZWZ3WjJtYlJ5RmduTFY5Tlhtc0h4el9sYU50ZXY?oc=5" target="_blank">$200B AI bet: India sweetens deeptech startup rules to 20 years - Tech Funding News</a> <span class="source-tag">Tech Funding News</span></li><li><a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxQbTM0a1psZm1QOXRNY05MZzAxYTBiZkl1ZmdyMEtBd1o0MUh6T3FONl94c0p2T1pvaV9OYTRvY2xCX0VqdTdheGJOWXY3dXY3TzRSMjFpRHl3SXBQOWdhSEtWOHdQaGk5UjlQcVBMeFFNeGlUQWduSWJhSDBVUmxheFZieHFiTWxFOGdtcldNTzYtaF9LcjRXVnczQ2k?oc=5" target="_blank">India broadens deep tech definition and extends startup eligibility to spur frontier innovation - digitimes</a> <span class="source-tag">digitimes</span></li></ul>
+            
+            <div class="footer">
+                <p>Curated by <strong>UnicrisAI</strong> Innovation Engine</p>
+                <a href="archive.html" class="archive-link">Explore Full Archive →</a>
+            </div>
         </div>
     </body>
     </html>
