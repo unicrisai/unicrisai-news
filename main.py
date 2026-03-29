@@ -2,14 +2,14 @@ import os
 import json
 import random
 import feedparser
-from google import genai
+from google.genai import Client
 from google.genai import types
 from datetime import datetime
 import time
 
 # 1. SETUP NEW GENAI CLIENT
-# The new SDK automatically looks for the GEMINI_API_KEY env var
-client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+# Initialize with the new Client class
+client = Client(api_key=os.environ["GEMINI_API_KEY"])
 
 # Use the latest stable model as of 2026
 MODEL_ID = "gemini-2.0-flash" 
