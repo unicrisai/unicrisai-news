@@ -26,31 +26,32 @@ FEEDS = {
 }
 
 def get_ai_summary(title):
+    # DEBUG: Print what we are sending
+    print(f"--- Requesting Summary for: {title[:50]}... ---")
     prompt = f"Write a 2-sentence executive summary for this tech news headline. Focus on the innovation. Headline: {title}"
     try:
         response = model.generate_content(prompt)
-        # Check if response has valid candidates to avoid 'Empty Response' errors
         if response.candidates and response.candidates[0].content.parts:
-            return response.text.strip()
+            text = response.text.strip()
+            print(f"SUCCESS: {text[:50]}...")
+            return text
+        print("BLOCKED: Gemini returned an empty candidate (Safety filter?)")
         return "Insightful tech update. View full article for details."
     except Exception as e:
-        print(f"Gemini Error for '{title}': {e}")
+        print(f"ERROR: {e}")
         return "Summary being refined. Full details available at source."
 
-# 3. DATA PERSISTENCE (The Archive)
+# 3. DATA PERSISTENCE
 if os.path.exists("data.json"):
     with open("data.json", "r") as f:
         full_database = json.load(f)
 else:
     full_database = []
 
-# Fetch and Add New Stories
 for category, url in FEEDS.items():
     feed = feedparser.parse(url)
     for entry in feed.entries[:3]:
-        # Only add if it's a new link
         if not any(item['link'] == entry.link for item in full_database):
-            print(f"New Story Found: {entry.title}")
             summary = get_ai_summary(entry.title)
             
             r = random.randint(1, 1000)
@@ -68,21 +69,20 @@ for category, url in FEEDS.items():
                 "image": img_map.get(category),
                 "date": datetime.now().strftime('%Y-%m-%d')
             })
-            time.sleep(1) # Prevent rate limiting
+            time.sleep(2) # Increased sleep to be safe
 
-# Save the full database back to GitHub
 with open("data.json", "w") as f:
     json.dump(full_database, f)
 
-# 4. UI GENERATION FUNCTION
+# 4. UI GENERATION
 def generate_html(news_items, filename, page_title):
     categories = ["All", "AI", "Deep Tech", "South East Asia"]
     
-    # Pre-generate tab buttons to avoid f-string backslash/quote issues
+    # We use a very explicit style for the buttons to make sure they show up
     button_html = ""
     for cat in categories:
-        active_class = "active-tab" if cat == "All" else ""
-        button_html += f'<button class="tab-btn {active_class}" onclick="filterCategory(\'{cat}\')">{cat}</button> '
+        active_class = "bg-black text-white" if cat == "All" else "bg-gray-100 text-black"
+        button_html += f'<button class="tab-btn px-4 py-2 text-[10px] uppercase font-bold mr-2 mb-2 {active_class}" onclick="filterCategory(\'{cat}\')">{cat}</button>'
 
     html_start = f"""
     <!DOCTYPE html>
@@ -93,35 +93,24 @@ def generate_html(news_items, filename, page_title):
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
             body {{ background: white; color: black; }}
-            .banner-img {{ filter: grayscale(100%); height: 140px; width: 100%; object-fit: cover; border-radius: 2px; transition: 0.4s; }}
-            .banner-img:hover {{ filter: grayscale(0%); }}
-            .news-card {{ border-bottom: 1px solid #f3f4f6; padding: 3rem 0; }}
-            .nav-link {{ font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: bold; margin-right: 20px; }}
             .active-page {{ border-bottom: 2px solid black; padding-bottom: 4px; }}
-            .tab-btn {{ font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 12px; border: 1px solid #eee; transition: 0.2s; }}
-            .tab-btn:hover {{ background: #f9f9f9; }}
-            .active-tab {{ background: black !important; color: white; border-color: black; }}
+            .active-tab {{ background: black !important; color: white !important; }}
         </style>
     </head>
     <body class="font-sans antialiased">
         <header class="max-w-2xl mx-auto pt-16 px-6">
             <h1 class="text-4xl font-black tracking-tighter uppercase">UnicrisAI</h1>
             
-            <nav class="mt-6 flex">
-                <a href="index.html" class="nav-link {'active-page' if filename=='index.html' else ''}">Latest</a>
-                <a href="archive.html" class="nav-link {'active-page' if filename=='archive.html' else ''}">Archive</a>
+            <nav class="mt-8 flex gap-6">
+                <a href="index.html" class="text-[10px] uppercase font-bold tracking-widest {'active-page' if filename=='index.html' else ''}">Latest Updates</a>
+                <a href="archive.html" class="text-[10px] uppercase font-bold tracking-widest {'active-page' if filename=='archive.html' else ''}">Full Archive</a>
             </nav>
-
-            <div class="flex justify-between items-center mt-8 text-[10px] tracking-[0.4em] text-gray-400 uppercase">
-                <div>{page_title}</div>
-                <div>{datetime.now().strftime('%Y-%m-%d')}</div>
-            </div>
 
             <div class="mt-12 border-b border-gray-100 pb-2">
                 <input type="text" id="searchInput" placeholder="SEARCH..." class="w-full text-xs tracking-widest uppercase bg-transparent outline-none">
             </div>
 
-            <div id="tabContainer" class="mt-6 flex flex-wrap gap-2">
+            <div id="tabContainer" class="mt-8 flex flex-wrap">
                 {button_html}
             </div>
         </header>
@@ -132,50 +121,32 @@ def generate_html(news_items, filename, page_title):
     cards_html = ""
     for item in news_items:
         cards_html += f"""
-        <div class="news-card" data-title="{item['title'].lower()}" data-category="{item['category']}">
-            <img src="{item['image']}" class="banner-img mb-6">
-            <div class="text-[9px] font-bold tracking-[0.2em] text-gray-400 uppercase mb-2">{item['category']} | {item['date']}</div>
+        <div class="news-card border-b border-gray-100 py-12" data-title="{item['title'].lower()}" data-category="{item['category']}">
+            <img src="{item['image']}" class="w-full h-40 object-cover mb-6 grayscale hover:grayscale-0 transition-all">
+            <div class="text-[9px] font-bold tracking-widest text-gray-400 uppercase mb-2">{item['category']} | {item['date']}</div>
             <h3 class="text-2xl font-bold leading-tight mb-4">
-                <a href="{item['link']}" target="_blank" class="hover:text-gray-400 transition-colors">{item['title']}</a>
+                <a href="{item['link']}" target="_blank" class="hover:underline">{item['title']}</a>
             </h3>
             <p class="text-gray-600 leading-relaxed mb-6">{item['summary']}</p>
-            <a href="{item['link']}" target="_blank" class="text-[10px] font-black border-b-2 border-black pb-1 tracking-widest uppercase">Read More →</a>
         </div>
         """
 
     html_end = """
         </main>
-        <footer class="max-w-2xl mx-auto px-6 py-24 text-center text-[9px] text-gray-300 uppercase tracking-[0.5em]">
-            &copy; 2026 UNICRISAI • AUTOMATED NEWS ENGINE
-        </footer>
-
         <script>
-            let currentCategory = 'All';
-            let currentSearch = '';
-
-            function updateDisplay() {
-                const cards = document.querySelectorAll('.news-card');
-                cards.forEach(card => {
-                    const title = card.getAttribute('data-title');
-                    const category = card.getAttribute('data-category');
-                    const matchesSearch = title.includes(currentSearch);
-                    const matchesCategory = currentCategory === 'All' || category === currentCategory;
-                    card.style.display = (matchesSearch && matchesCategory) ? 'block' : 'none';
-                });
-            }
-
             function filterCategory(cat) {
-                currentCategory = cat;
                 document.querySelectorAll('.tab-btn').forEach(btn => {
-                    btn.classList.toggle('active-tab', btn.innerText.toUpperCase() === cat.toUpperCase());
+                    btn.classList.toggle('active-tab', btn.innerText === cat);
                 });
-                updateDisplay();
+                const cards = document.querySelectorAll('.news-card');
+                const term = document.getElementById('searchInput').value.toLowerCase();
+                cards.forEach(card => {
+                    const matchesCat = (cat === 'All' || card.dataset.category === cat);
+                    const matchesSearch = card.dataset.title.includes(term);
+                    card.style.display = (matchesCat && matchesSearch) ? 'block' : 'none';
+                });
             }
-
-            document.getElementById('searchInput').addEventListener('input', (e) => {
-                currentSearch = e.target.value.toLowerCase();
-                updateDisplay();
-            });
+            document.getElementById('searchInput').addEventListener('input', () => filterCategory(document.querySelector('.active-tab').innerText));
         </script>
     </body>
     </html>
@@ -183,7 +154,5 @@ def generate_html(news_items, filename, page_title):
     with open(filename, "w", encoding="utf-8") as f:
         f.write(html_start + cards_html + html_end)
 
-# 5. RUN GENERATION
-# Show only the top 10 on the main page, and everything in the archive
 generate_html(full_database[:10], "index.html", "Latest Updates")
 generate_html(full_database, "archive.html", "Full Archive")
