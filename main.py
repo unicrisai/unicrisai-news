@@ -2,30 +2,28 @@ import os
 import json
 import random
 import feedparser
-from google.genai import Client
+import google.genai as genai
 from google.genai import types
 from datetime import datetime
 import time
 
-# 1. SETUP NEW GENAI CLIENT
-# Initialize with the new Client class
-client = Client(api_key=os.environ["GEMINI_API_KEY"])
+# 1. SETUP CLIENT
+# The client will automatically find your GEMINI_API_KEY secret from the environment
+client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
-# Use the latest stable model as of 2026
+# Using the most current stable model
 MODEL_ID = "gemini-2.0-flash" 
 
 def get_ai_summary(title):
-    print(f"--- Requesting Summary for: {title[:50]}... ---")
+    print(f"--- Summarizing: {title[:50]}... ---")
     prompt = f"Write a 2-sentence executive summary for this tech news headline. Focus on the innovation. Headline: {title}"
     
     try:
-        # New SDK syntax: client.models.generate_content
         response = client.models.generate_content(
             model=MODEL_ID,
             contents=prompt,
             config=types.GenerateContentConfig(
-                system_instruction="You are a professional tech analyst. Provide objective, 2-sentence summaries.",
-                # Safety settings are now part of the config
+                system_instruction="You are a professional tech analyst for UnicrisAI. Provide objective, 2-sentence innovation-focused summaries.",
                 safety_settings=[
                     types.SafetySetting(category="HARM_CATEGORY_HARASSMENT", threshold="BLOCK_NONE"),
                     types.SafetySetting(category="HARM_CATEGORY_HATE_SPEECH", threshold="BLOCK_NONE"),
@@ -36,17 +34,16 @@ def get_ai_summary(title):
         )
         
         if response.text:
-            text = response.text.strip()
-            print(f"SUCCESS: {text[:50]}...")
-            return text
+            print("SUCCESS")
+            return response.text.strip()
         
         return "Insightful tech update. View full article for details."
         
     except Exception as e:
-        print(f"API Error for '{title}': {e}")
+        print(f"API Error: {e}")
         return "Summary being refined. Full details available at source."
 
-# 3. DATA PERSISTENCE (Remains the same logic)
+# 3. ARCHIVE LOGIC
 if os.path.exists("data.json"):
     with open("data.json", "r") as f:
         full_database = json.load(f)
@@ -85,10 +82,15 @@ for category, url in FEEDS.items():
 with open("data.json", "w") as f:
     json.dump(full_database, f)
 
-# 4. UI GENERATION (Same logic as before)
+# 4. HTML GENERATION
 def generate_html(news_items, filename, page_title):
     categories = ["All", "AI", "Deep Tech", "South East Asia"]
-    button_html = "".join([f'<button class="tab-btn {"active-tab" if cat=="All" else ""}" onclick="filterCategory(\'{cat}\')">{cat}</button> ' for cat in categories])
+    
+    # Pre-generate buttons to avoid f-string issues
+    button_html = ""
+    for cat in categories:
+        active_class = "active-tab" if cat == "All" else ""
+        button_html += f'<button class="tab-btn {active_class}" onclick="filterCategory(\'{cat}\')">{cat}</button> '
 
     html_start = f"""
     <!DOCTYPE html>
@@ -105,6 +107,7 @@ def generate_html(news_items, filename, page_title):
             .nav-link {{ font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: bold; margin-right: 20px; }}
             .active-page {{ border-bottom: 2px solid black; padding-bottom: 4px; }}
             .tab-btn {{ font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 12px; border: 1px solid #eee; transition: 0.2s; }}
+            .tab-btn:hover {{ background: #f9f9f9; }}
             .active-tab {{ background: black !important; color: white; border-color: black; }}
         </style>
     </head>
