@@ -26,24 +26,9 @@
         <div class="archive-box">
             <label style="display:block; font-size: 11px; margin-bottom: 10px; font-weight: 800; color: #aaa;">EXPLORE ARCHIVE</label>
             <select id="archive" onchange="if(this.value != '#') location = this.value;">
-                <option value="#">Select a past date...</option>
-                </select>
+                <option value="#">Select a past report...</option><option value="./archive/digest-2026-04-04.html">April 4, 2026</option><option value="./archive/digest-2026-04-01.html">April 1, 2026</option>
+            </select>
         </div>
     </div>
-
-    <script>
-        const select = document.getElementById('archive');
-        const today = new Date();
-        // Generates the last 14 days of links automatically
-        for (let i = 0; i < 14; i++) {
-            const date = new Date(today);
-            date.setDate(today.getDate() - i);
-            const dateString = date.toISOString().split('T')[0];
-            const option = document.createElement('option');
-            option.value = `./archive/digest-${dateString}.html`;
-            option.textContent = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-            select.appendChild(option);
-        }
-    </script>
-</body>
+    </body>
 </html>
