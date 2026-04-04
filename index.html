@@ -4,18 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="0; url=./archive/digest-2026-04-04.html">
-    <title>UnicrisAI Intelligence Report</title>
+    <title>UNICRIS AI // Intelligence Hub</title>
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #f9f9f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .loader { text-align: center; color: #333; }
-        .btn { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #ffcc00; color: #000; text-decoration: none; font-weight: bold; border-radius: 5px; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #ffcc00; margin: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center; }
+        .loading-box { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h1 { font-weight: 900; letter-spacing: -1.5px; margin: 0; }
+        .dropdown { margin-top: 20px; position: relative; display: inline-block; }
+        select { padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: inherit; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div class="loader">
+    <div class="loading-box">
         <h1>UNICRIS AI</h1>
-        <p>Loading today's Intelligence Report...</p>
-        <a href="./archive/digest-2026-04-04.html" class="btn">View Latest Report →</a>
+        <p>Loading Latest Intelligence...</p>
+        
+        <div class="dropdown">
+            <label for="archive" style="display:block; font-size: 12px; margin-bottom: 5px; font-weight: bold;">PAST REPORTS:</label>
+            <select id="archive" onchange="location = this.value;">
+                <option value="#">Select a date...</option>
+                </select>
+        </div>
     </div>
+
+    <script>
+        const select = document.getElementById('archive');
+        const today = new Date();
+        for (let i = 0; i < 14; i++) {
+            const date = new Date(today);
+            date.setDate(today.getDate() - i);
+            const dateString = date.toISOString().split('T')[0];
+            const option = document.createElement('option');
+            option.value = `./archive/digest-${dateString}.html`;
+            option.textContent = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+            select.appendChild(option);
+        }
+    </script>
 </body>
 </html>
